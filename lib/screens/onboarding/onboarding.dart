@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurture_field/utils/app_strings.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../components/custom_buttons/custom_button_rounded.dart';
 import '../../utils/app_colors.dart';
@@ -19,6 +20,7 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final controller = PageController();
   bool isLastPage = false;
+  int pageIndex = 0;
 
   @override
   void dispose() {
@@ -32,45 +34,63 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
-
-            Expanded(
-              child: Stack(
+            //if(isLastPage==false)...[
+              Row(
+                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  PageView(
-                    controller: controller,
-                    onPageChanged: (index) {
-                      setState(() => isLastPage = index == 2);
-                      print(index);
-                    },
-                    children: const [
-                      CustomScreenTemplate(
-                          title: "Log & track your daily meals",
-                          imagePath: AssetStrings.onBoarding1
-                      ),
-
-                      CustomScreenTemplate(
-                          title: "Purchase meal plans from certified coaches",
-                          imagePath: AssetStrings.onBoarding2
-                      ),
-
-                      CustomScreenTemplate(
-                          title: "Sign up or sign in",
-                          imagePath: AssetStrings.onBoarding3
-                      ),
-
-                    ],
-                  ),
-                  if(isLastPage==false)...[
-                    Align(
-                        alignment: Alignment.topRight,
-                        child: TextButton(onPressed: (){
-                          controller.jumpToPage(2);
+                  if(pageIndex!=0)...[
+                    IconButton(
+                        onPressed: (){
+                          controller.previousPage(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeInOut);
                         },
-                            child: Text("Skip", style: MyTextStyle.primaryBold(fontSize: 16),)))
-                  ]
+                        icon: Icon(Icons.arrow_back_ios)
+                    ),
+                  ],
+
+                  const Spacer(),
+                  TextButton(
+                      onPressed: (){
+                        controller.jumpToPage(2);
+                      },
+                      child: Text("Skip", style: MyTextStyle.primaryBold(fontSize: 16),)
+                  ),
+                ],
+              ),
+            //],
+            Expanded(
+              child: PageView(
+                controller: controller,
+                onPageChanged: (index) {
+                  setState(() {
+                    isLastPage = index == 2;
+                    pageIndex = index;
+                  });
+                },
+                children: const [
+                  CustomScreenTemplate(
+                      title: "The key to unlocking your yield potential.",
+                      subTitle: AppStrings.onBoardingSubtitle1,
+                      imagePath: AssetStrings.onBoarding1
+                  ),
+
+                  CustomScreenTemplate(
+                      title: "Detailed analytics",
+                      subTitle: AppStrings.onBoardingSubtitle2,
+                      imagePath: AssetStrings.onBoarding2
+                  ),
+
+                  CustomScreenTemplate(
+                      title: "The next step in smart farming",
+                      subTitle: AppStrings.onBoardingSubtitle3,
+                      imagePath: AssetStrings.onBoarding3
+                  ),
+
                 ],
               ),
             ),
+
             const SizedBox(height: 60,),
             Center(
               child: SmoothPageIndicator(
@@ -79,7 +99,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 effect: const ExpandingDotsEffect(
                     spacing: 16,
                     dotColor: MyColors.unselectedDot,
-                    activeDotColor: MyColors.customOrange),
+                    activeDotColor: MyColors.primaryColor),
                 onDotClicked: (index) => controller.animateToPage(index,
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.easeIn),

@@ -32,8 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void pageDecider()async{
     Timer(const Duration(seconds: 5),(){
       if(widget.isOnBoarding){
-        print("widget.isOnBoarding");
-        //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const OnBoardingScreen()));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const OnBoardingScreen()));
       }else{
         if(loginToken.isEmpty){
           print("loginToken.isEmpty");

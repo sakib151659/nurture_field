@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../utils/app_colors.dart';
 import '../../utils/custom_text_style.dart';
 
@@ -25,7 +24,7 @@ class CustomButtonRounded extends StatelessWidget {
             ),
           ),
         ),
-        child: Text(title,style: MyTextStyle.secondaryLight(),),
+        child: Text(title,style: MyTextStyle.secondaryLight(fontColor: MyColors.white, fontWeight:FontWeight.w600 ),),
       ),
     );
   }
