@@ -60,6 +60,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
             //],
             Expanded(
+              flex: 8,
               child: PageView(
                 controller: controller,
                 onPageChanged: (index) {
@@ -91,13 +92,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
             ),
 
-            const SizedBox(height: 60,),
+            //const SizedBox(height: 60,),
             Center(
               child: SmoothPageIndicator(
                 controller: controller,
                 count: 3,
                 effect: const ExpandingDotsEffect(
-                    spacing: 16,
+                    spacing: 10,
+                    radius: 10,
+                    dotHeight: 10,
+                    dotWidth: 10,
                     dotColor: MyColors.unselectedDot,
                     activeDotColor: MyColors.primaryColor),
                 onDotClicked: (index) => controller.animateToPage(index,
@@ -106,52 +110,43 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
             ),
 
-            const SizedBox(height: 40,),
-            if(isLastPage==false)...[
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: CustomButtonRounded(
-                      title: "Next",
-                      onPress: (){
-                        controller.nextPage(
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
-                        //print("print ");
-                        //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const SignInScreen()));
-                        //LocalStorageManager.saveData(AppConstant.showHome, true);
-                      }
-                  )
-              ),
-            ],
+            Expanded(
+              flex: 3,
+              child: Column(
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height*.15,),
+                  if(isLastPage==false)...[
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: CustomButtonRounded(
+                            title: "Next",
+                            onPress: (){
+                              controller.nextPage(
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
+                            }
+                        )
+                    ),
+                  ],
 
-            if(isLastPage==true)...[
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: CustomButtonRounded(
-                      title: "Sign Up",
-                      onPress: (){
-                        //print("print ");
-                        //Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const Auth()));
-                        LocalStorageManager.saveData(AppConstant.isOnBoarding, false);
-                      }
-                  )
-              ),
+                  if(isLastPage==true)...[
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: CustomButtonRounded(
+                            title: "Get Started",
+                            onPress: (){
+                              //Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const Auth()));
+                              LocalStorageManager.saveData(AppConstant.isOnBoarding, false);
+                            }
+                        )
+                    ),
 
-              const SizedBox(height: 15,),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: CustomButtonRounded(
-                      title: "Sign In",
-                      onPress: (){
-                        //print("print ");
-                        //Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const LoginScreen()));
-                        LocalStorageManager.saveData(AppConstant.isOnBoarding, false);
-                      }
-                  )
+                  ],
+                ],
               ),
-            ],
+            ),
 
-            isLastPage?const SizedBox(height: 30,): const SizedBox(height: 70,),
+            const SizedBox(height: 30,)
 
           ],
         ),
