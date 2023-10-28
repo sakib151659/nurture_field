@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../utils/app_colors.dart';
 import '../../utils/custom_text_style.dart';
 
@@ -21,14 +20,14 @@ class _CustomButtonUnfilledState extends State<CustomButtonUnfilled> {
       onTap: widget.onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 15),
-        height: 32,
+        height: 55,
         width: widget.width,
         decoration: BoxDecoration(
-            color: MyColors.backgroundColor,
-            borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: MyColors.primaryColor, width: 1.5)
+            //color: MyColors.backgroundColor,
+            borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: MyColors.white, width: 1.5)
         ),
-        child: Center(child: Text(widget.title, style: MyTextStyle.primaryLight(fontSize: 14, fontColor:MyColors.primaryColor,fontWeight: FontWeight.w600 )),
+        child: Center(child: Text(widget.title, style: MyTextStyle.primaryLight(fontSize: 14, fontColor:MyColors.white,fontWeight: FontWeight.w600 )),
       ),),
     );
   }

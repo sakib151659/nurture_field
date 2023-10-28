@@ -5,6 +5,7 @@ import '../../utils/api_constant.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/asset_strings.dart';
 import '../../utils/local_storage_manager.dart';
+import '../auth/auth.dart';
 import '../onboarding/onboarding.dart';
 class SplashScreen extends StatefulWidget {
   final bool isOnBoarding;
@@ -35,8 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const OnBoardingScreen()));
       }else{
         if(loginToken.isEmpty){
-          print("loginToken.isEmpty");
-          //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const Auth()));
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const AuthScreen()));
         }else{
           //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const Dashboard()));
         }
