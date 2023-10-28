@@ -7,6 +7,7 @@ import '../../utils/app_constants.dart';
 import '../../utils/asset_strings.dart';
 import '../../utils/custom_text_style.dart';
 import '../../utils/local_storage_manager.dart';
+import 'complete_company_profile.dart';
 import 'onboarding_template.dart';
 
 
@@ -135,7 +136,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         child: CustomButtonRounded(
                             title: "Get Started",
                             onPress: (){
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const Auth()));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CompleteCompanyProfile()));
                               LocalStorageManager.saveData(AppConstant.isOnBoarding, false);
                             }
                         )
