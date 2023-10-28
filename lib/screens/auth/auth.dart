@@ -1,11 +1,10 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:nurture_field/components/custom_buttons/custom_button_unfilled.dart';
 import 'package:nurture_field/utils/app_colors.dart';
 import '../../components/custom_buttons/custom_button_rounded.dart';
 import '../../utils/asset_strings.dart';
 import '../../utils/custom_text_style.dart';
+import 'create_account.dart';
 
 
 class AuthScreen extends StatefulWidget {
@@ -58,7 +57,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   CustomButtonRounded(
                       title: "Create an account",
                       onPress: (){
-                        //Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CompleteCompanyProfile()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CreateAccount()));
                       }
                   ),
 
