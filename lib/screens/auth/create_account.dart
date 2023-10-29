@@ -3,12 +3,12 @@ import 'package:nurture_field/components/custom_appbar/custom_appbar_inner.dart'
 import 'package:nurture_field/components/custom_buttons/custom_button_rounded.dart';
 import 'package:nurture_field/utils/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
-
 import '../../components/custom_text_input_field/custom_text_input_field.dart';
 import '../../components/custom_text_input_field/sign_in_text_input_field.dart';
 import '../../components/custom_widgets/common_widgets.dart';
 import '../../utils/app_strings.dart';
 import '../../utils/custom_text_style.dart';
+import 'confirm_email.dart';
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({Key? key}) : super(key: key);
@@ -18,8 +18,6 @@ class CreateAccount extends StatefulWidget {
 }
 
 class _CreateAccountState extends State<CreateAccount> {
-
-  // controllers
   TextEditingController nameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController companyNameController = TextEditingController();
@@ -31,6 +29,7 @@ class _CreateAccountState extends State<CreateAccount> {
   bool isSecurePass = true;
   bool is8Char = false;
   bool isSpecialChar = false;
+  bool isFormFilled = false;
   @override
   void initState() {
     // TODO: implement initState
@@ -80,16 +79,19 @@ class _CreateAccountState extends State<CreateAccount> {
                 CustomWidgets().titledColumn(
                     title: "Name",
                     widget: CustomTextInputField(
-                        controller: nameController,
-                        textInputType: TextInputType.text,
-                        hintText: "Name",
-                        validatorFunction: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppStrings.requiredField;
-                        }
-                        return null;
+                      controller: nameController,
+                      textInputType: TextInputType.text,
+                      hintText: "Name",
+                      onChanged: (value){
+                        isFormFullyFilled();
                       },
-                    )
+                      validatorFunction: (value) {
+                      if (value == null || value.isEmpty) {
+                        return AppStrings.requiredField;
+                      }
+                      return null;
+                    },
+                   )
                 ),
 
                 CustomWidgets().titledColumn(
@@ -98,6 +100,9 @@ class _CreateAccountState extends State<CreateAccount> {
                       controller: lastNameController,
                       textInputType: TextInputType.text,
                       hintText: "Last name",
+                      onChanged: (value){
+                        isFormFullyFilled();
+                      },
                       validatorFunction: (value) {
                         if (value == null || value.isEmpty) {
                           return AppStrings.requiredField;
@@ -113,6 +118,9 @@ class _CreateAccountState extends State<CreateAccount> {
                       controller: companyNameController,
                       textInputType: TextInputType.text,
                       hintText: "Company name",
+                      onChanged: (value){
+                        isFormFullyFilled();
+                      },
                       validatorFunction: (value) {
                         if (value == null || value.isEmpty) {
                           return AppStrings.requiredField;
@@ -128,6 +136,9 @@ class _CreateAccountState extends State<CreateAccount> {
                       controller: emailController,
                       textInputType: TextInputType.emailAddress,
                       hintText: "Email",
+                      onChanged: (value){
+                        isFormFullyFilled();
+                      },
                       validatorFunction: (value) {
                         if (value == null || value.isEmpty) {
                           return AppStrings.requiredField;
@@ -147,6 +158,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       suffix: _passwordVisibility(),
                       onChanged: (value){
                         passwordValidate(value: value);
+                        isFormFullyFilled();
                       },
                       validatorFunction: (value) {
                         if (!isSpecialChar) {
@@ -166,8 +178,10 @@ class _CreateAccountState extends State<CreateAccount> {
                 const SizedBox(height: 20,),
                 CustomButtonRounded(
                     title: "Continue",
+                    bgColor: isFormFilled?MyColors.primaryColor:MyColors.secondaryTextColor,
                     onPress: (){
                       if(_formKey.currentState!.validate()){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> ConfirmEmail(email: emailController.text,)));
 
                       }
 
@@ -185,6 +199,12 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
 
+
+
+
+
+
+  /// widgets and functions
   Widget _passwordVisibility() {
     return InkWell(
       onTap: () {
@@ -237,5 +257,13 @@ class _CreateAccountState extends State<CreateAccount> {
   bool _validatePassword(String value) {
     RegExp regex = RegExp(r'^(?=.*[!@#\$%^&*(),.?":{}|<>]).{8,}$');
     return regex.hasMatch(value);
+  }
+
+  void isFormFullyFilled(){
+    if(nameController.text.isNotEmpty && lastNameController.text.isNotEmpty && companyNameController.text.isNotEmpty && emailController.text.isNotEmpty && isSpecialChar==true){
+      setState(() {
+        isFormFilled = true;
+      });
+    }
   }
 }

@@ -9,7 +9,7 @@ class CustomWidgets{
       children: [
         Text(title,
           textAlign: TextAlign.center,
-          style: MyTextStyle.primaryLight(),
+          style: MyTextStyle.primaryLight(fontSize: 15),
         ),
         const SizedBox(height: 3,),
         widget,
