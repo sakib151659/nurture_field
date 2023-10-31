@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurture_field/screens/auth/password_changed.dart';
 import '../../components/custom_appbar/custom_appbar_inner.dart';
 import '../../components/custom_buttons/custom_button_rounded.dart';
 import '../../components/custom_text_input_field/custom_text_input_field.dart';
@@ -7,25 +8,26 @@ import '../../components/custom_widgets/common_widgets.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_strings.dart';
 import '../../utils/custom_text_style.dart';
-import 'forget_password.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class VerifyCode extends StatefulWidget {
+  final String email;
+  const VerifyCode({Key? key, required this.email}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<VerifyCode> createState() => _VerifyCodeState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController();
+class _VerifyCodeState extends State<VerifyCode> {
+  TextEditingController verificationCodeController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
   bool isSecurePass = true;
-  bool isValidEmail = false;
+  bool isSecureConfirmPass = true;
   bool isSpecialChar = false;
-  bool isFormFilled = false;
+  bool is8Char = false;
   bool isInvalidCredentials = false;
   @override
   Widget build(BuildContext context) {
@@ -42,35 +44,40 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   //heading
                   const SizedBox(height: 25,),
-                  Text("Log in",
+                  Text("Verify code",
                     style: MyTextStyle.primaryBold(fontSize: 24),
                   ),
                   const SizedBox(height: 5,),
-                  Text("Welcome to  back nurture field!",
+                  Text("Please check your inbox for verification code sent to ${widget.email}",
                     style: MyTextStyle.secondaryLight(),
                   ),
                   const SizedBox(height: 15,),
 
                   //form
                   CustomWidgets().titledColumn(
-                      title: "Email",
+                      title: "Enter verification code",
                       widget: CustomTextInputField(
-                        controller: emailController,
-                        textInputType: TextInputType.emailAddress,
-                        hintText: "Email",
-                        onChanged: (value){
-                          isFormFullyFilled();
-                          isValidEmail = isEmailValid(value);
-                        },
+                        controller: verificationCodeController,
+                        textInputType: TextInputType.number,
+                        hintText: "0 0 0 0",
                         validatorFunction: (value) {
-                          if (isValidEmail==false) {
+                          if (verificationCodeController.text.isEmpty) {
                             return AppStrings.requiredField;
+                          }else if (verificationCodeController.text.length!=4) {
+                            return AppStrings.should4digit;
                           }
                           return null;
                         },
                       )
                   ),
 
+                  TextButton(
+                      onPressed: (){
+                       // hit the resend code api
+                      },
+                      child: Text("Resend code", style: MyTextStyle.primaryBold(fontColor: MyColors.primaryColor, fontSize: 15),)
+                  ),
+                  const SizedBox(height: 10,),
                   CustomWidgets().titledColumn(
                       title: "Password",
                       widget: MyTextFieldSignIn(
@@ -80,11 +87,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: "Password",
                         suffix: _passwordVisibility(),
                         onChanged: (value){
-                          isFormFullyFilled();
+                          passwordValidate(value: value);
                         },
                         validatorFunction: (value) {
                           if (!isSpecialChar) {
-                            return AppStrings.requiredField;
+                            return AppStrings.passwordInstruction;
                           }
                           return null;
                         },
@@ -92,29 +99,31 @@ class _LoginScreenState extends State<LoginScreen> {
                       )
                   ),
 
-                  // if credentials is invalid then set the isInvalidCredentials = true
-                  if(isInvalidCredentials)...[
-                    Text("ⓘ Wrong password. Try again or click forgot password to reset it.",
-                      style: MyTextStyle.secondaryLight(fontColor: MyColors.customRed),
-                    ),
-                    const SizedBox(height: 10,),
-                  ],
+                  CustomWidgets().titledColumn(
+                      title: "Confirm Password",
+                      widget: MyTextFieldSignIn(
+                        isSecure: isSecureConfirmPass,
+                        controller: confirmPasswordController,
+                        textInputType: TextInputType.text,
+                        hintText: "Confirm Password",
+                        suffix: _confirmPasswordVisibility(),
+                        validatorFunction: (value) {
+                          if (passwordController.text!=confirmPasswordController.text) {
+                            return AppStrings.passwordNotMatching;
+                          }
+                          return null;
+                        },
 
-                  TextButton(
-                      onPressed: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const ForgetPassword()));
-                      },
-                      child: Text("Forgot password?", style: MyTextStyle.primaryBold(fontColor: MyColors.primaryColor, fontSize: 15),)
+                      )
                   ),
 
                   const SizedBox(height: 30,),
                   CustomButtonRounded(
                       title: "Continue",
-                      bgColor: isFormFilled?MyColors.primaryColor:MyColors.secondaryTextColor,
+                      bgColor: MyColors.primaryColor,
                       onPress: (){
-                        if(_formKey.currentState!.validate() && isValidEmail && passwordController.text.isNotEmpty){
-                          //Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> ConfirmEmail(email: emailController.text,)));
-
+                        if(_formKey.currentState!.validate()){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> const PasswordChanged()));
                         }
 
                       }
@@ -146,23 +155,41 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void isFormFullyFilled(){
-    if(isValidEmail==true && passwordController.text.isNotEmpty){
+  Widget _confirmPasswordVisibility() {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          isSecureConfirmPass = !isSecureConfirmPass;
+        });
+      },
+      child: Icon(isSecureConfirmPass ? Icons.visibility_off : Icons.visibility, size: 18),
+    );
+  }
+
+
+  void passwordValidate({required String value}){
+    if(value.length>=8){
       setState(() {
-        isFormFilled = true;
+        is8Char = true;
+      });
+      setState(() {
+        isSpecialChar = _validatePassword(value);
       });
     }else{
       setState(() {
-        isFormFilled = false;
+        is8Char = false;
+      });
+    }
+    if(isSpecialChar){
+      setState(() {
+        isSpecialChar = true;
       });
     }
   }
-
-  bool isEmailValid(String email) {
-    final RegExp emailRegex = RegExp(
-      r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$',
-    );
-    return emailRegex.hasMatch(email);
+  bool _validatePassword(String value) {
+    RegExp regex = RegExp(r'^(?=.*[!@#\$%^&*(),.?":{}|<>]).{8,}$');
+    return regex.hasMatch(value);
   }
+
 
 }
