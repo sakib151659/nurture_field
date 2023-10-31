@@ -45,5 +45,14 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location for Filed Selection.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location for a Filed Selection.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>location</string>
+    </array>
+
 </dict>
 </plist>
