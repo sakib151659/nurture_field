@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nurture_field/components/custom_buttons/custom_button_unfilled.dart';
+import 'package:nurture_field/screens/auth/login_screen.dart';
 import 'package:nurture_field/utils/app_colors.dart';
 import '../../components/custom_buttons/custom_button_rounded.dart';
 import '../../utils/asset_strings.dart';
@@ -50,7 +51,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       title: "Log in",
                       width: double.infinity,
                       onTap: (){
-
+                        Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const LoginScreen()));
                       }
                   ),
                   const SizedBox(height: 18,),
