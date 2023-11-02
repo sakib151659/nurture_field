@@ -7,6 +7,8 @@ class MyColors {
   static const Color secondaryTextColor = Color.fromRGBO(101, 107, 117, 1);
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
   static const Color greenTransparent = Color.fromRGBO(20, 56, 11, 0.63);
+  static const Color greenBg = Color.fromRGBO(108, 155, 96, 0.09);
+  static const Color borderColor = Color.fromRGBO(228, 232, 231, 1);
 
 
   static const Color cardBackgroundColor = Color.fromRGBO(249, 251, 247, 1);
