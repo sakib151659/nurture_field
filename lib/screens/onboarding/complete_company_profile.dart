@@ -9,6 +9,7 @@ import '../../utils/app_constants.dart';
 import '../../utils/app_strings.dart';
 import '../../utils/custom_text_style.dart';
 import '../../utils/local_storage_manager.dart';
+import '../filed_map_view/filed_map_view.dart';
 
 class CompleteCompanyProfile extends StatefulWidget {
   const CompleteCompanyProfile({Key? key}) : super(key: key);
@@ -145,7 +146,7 @@ class _CompleteCompanyProfileState extends State<CompleteCompanyProfile> {
                     bgColor: isFormFilled? MyColors.primaryColor: MyColors.customGrayDark,
                     onPress: (){
                       if(_formKey.currentState!.validate()){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CompleteCompanyProfile()));
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const FiledMapView()));
                         LocalStorageManager.saveData(AppConstant.isCompanyProfileCompleted, true);
                       }
                     }

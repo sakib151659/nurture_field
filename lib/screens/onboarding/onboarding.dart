@@ -136,7 +136,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         child: CustomButtonRounded(
                             title: "Get Started",
                             onPress: (){
-                              Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CompleteCompanyProfile()));
+                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const CompleteCompanyProfile()));
                               LocalStorageManager.saveData(AppConstant.isOnBoarding, false);
                             }
                         )

@@ -27,6 +27,7 @@ class MyColors {
   static const Color spinnerSelectedColor = Color.fromRGBO(232, 239, 221, 1);
   static const Color dashboardIconUnselected = Color.fromRGBO(19, 78, 111, 0.5);
   static const Color progressBgColor = Color.fromRGBO(25, 98, 138, 1);
+  static const Color verifiedBg = Color.fromRGBO(247, 249, 248, 1);
 
 
 
