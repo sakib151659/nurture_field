@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nurture_field/utils/app_colors.dart';
 
 import '../../utils/custom_text_style.dart';
+import 'draw_field/draw_field_on_map.dart';
 
 class FiledMapView extends StatefulWidget {
   const FiledMapView({Key? key}) : super(key: key);
@@ -24,11 +25,11 @@ class _FiledMapViewState extends State<FiledMapView> {
                 Container(
                   height: 66,
                   width: 66,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: MyColors.verifiedBg,
                     shape: BoxShape.circle
                   ),
-                  child: Icon(Icons.verified_outlined, color: MyColors.primaryColor, size: 30,),
+                  child: const Icon(Icons.verified_outlined, color: MyColors.primaryColor, size: 30,),
                 ),
 
                 const SizedBox(height: 5,),
@@ -55,6 +56,7 @@ class _FiledMapViewState extends State<FiledMapView> {
                     title: "Draw field on map",
                     subTitle: "Draw your field on the map, creating a polygon using the drawing tool.",
                     onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const DrawFieldOnMap()));
 
                     }
                 ),
