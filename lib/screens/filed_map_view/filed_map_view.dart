@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurture_field/screens/filed_map_view/set_coordinates/set_coordinates_manually.dart';
 import 'package:nurture_field/utils/app_colors.dart';
 
 import '../../utils/custom_text_style.dart';
@@ -66,7 +67,7 @@ class _FiledMapViewState extends State<FiledMapView> {
                     title: "Set Coordinates manually",
                     subTitle: "fill your land coordinates on input",
                     onTap: (){
-
+                      Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const SetCoordinatesManually()));
                     }
                 ),
 

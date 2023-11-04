@@ -54,40 +54,35 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
 
   // widgets
   Widget addFieldCard(){
-    return InkWell(
-      onTap: (){
-
-      },
-      child: Container(
-        height: 110,
-        padding: const EdgeInsets.all(15),
-        margin: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: MyColors.white
-        ),
-        child: Row(
-          children: [
-            const Icon(Icons.add_location_alt_outlined, size: 35,),
-            const SizedBox(width: 15,),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Add your fields",
-                    style: MyTextStyle.primaryBold(fontSize: 20),
-                  ),
-                  const SizedBox(height: 5,),
-                  Text("Browse satellite images, vegetation indices, weather data and much more",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: MyTextStyle.secondaryLight(fontSize: 15),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+    return Container( 
+      height: 110,
+      padding: const EdgeInsets.all(15),
+      margin: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: MyColors.white
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.add_location_alt_outlined, size: 35,),
+          const SizedBox(width: 15,),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Add your fields",
+                  style: MyTextStyle.primaryBold(fontSize: 20),
+                ),
+                const SizedBox(height: 5,),
+                Text("Browse satellite images, vegetation indices, weather data and much more",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: MyTextStyle.secondaryLight(fontSize: 15),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
