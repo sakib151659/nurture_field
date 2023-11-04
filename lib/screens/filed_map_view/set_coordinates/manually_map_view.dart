@@ -6,6 +6,7 @@ import 'package:nurture_field/utils/app_colors.dart';
 import 'package:nurture_field/utils/asset_strings.dart';
 import '../../../components/custom_buttons/custom_button_rounded.dart';
 import '../../../utils/custom_text_style.dart';
+import '../common_screen/field_create.dart';
 
 class ManuallyMapView extends StatefulWidget {
   const ManuallyMapView({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class _ManuallyMapViewState extends State<ManuallyMapView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: const CustomAppbarInner(),
       body: Column(
         children: [
@@ -41,18 +43,16 @@ class _ManuallyMapViewState extends State<ManuallyMapView> {
           /// REPLACE THIS IMAGE WITH GOOGLE MAP
           Stack(
             children: [
-              Image.network("https://t3.ftcdn.net/jpg/03/62/18/34/360_F_362183460_4n0UlAKQ39ATMMkUxBEXmpLo1wQujTqd.jpg", fit: BoxFit.fitHeight,),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height*.60,
+                  child: Image.network("https://t3.ftcdn.net/jpg/03/62/18/34/360_F_362183460_4n0UlAKQ39ATMMkUxBEXmpLo1wQujTqd.jpg", fit: BoxFit.fitHeight,)),
               Align(
                   alignment: Alignment.topCenter,
                   child: fieldEditDeleteCard()),
-
-              // Align(
-              //   alignment: Alignment.bottomCenter,
-              //     child: bottomSheet())
             ],
           ),
 
-
+          bottomSheet()
 
         ],
       ),
@@ -122,6 +122,7 @@ class _ManuallyMapViewState extends State<ManuallyMapView> {
               title: "Save field",
               bgColor: MyColors.primaryColor,
               onPress: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const FieldCreate()));
               }
           ),
           const SizedBox(height: 20,),
@@ -129,7 +130,9 @@ class _ManuallyMapViewState extends State<ManuallyMapView> {
               title: "Cancel drawing",
               width: double.infinity,
               color: MyColors.secondaryTextColor,
-              onTap: (){}
+              onTap: (){
+                Navigator.of(context).pop();
+              }
           )
         ],
       ),
