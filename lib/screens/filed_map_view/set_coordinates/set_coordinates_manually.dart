@@ -6,6 +6,7 @@ import '../../../components/custom_widgets/common_widgets.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_strings.dart';
 import '../../../utils/custom_text_style.dart';
+import 'manually_map_view.dart';
 
 class SetCoordinatesManually extends StatefulWidget {
   const SetCoordinatesManually({Key? key}) : super(key: key);
@@ -89,7 +90,7 @@ class _SetCoordinatesManuallyState extends State<SetCoordinatesManually> {
                       bgColor: MyColors.primaryColor,
                       onPress: (){
                         if(_formKey.currentState!.validate()){
-                          //Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> VerifyCode(email: emailController.text,)));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> ManuallyMapView()));
                         }
                       }
                   ),

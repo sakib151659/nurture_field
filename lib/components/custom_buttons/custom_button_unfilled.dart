@@ -6,8 +6,9 @@ import '../../utils/custom_text_style.dart';
 class CustomButtonUnfilled extends StatefulWidget {
   final String title;
   final double width;
+  final Color color;
   final Function() onTap;
-  const CustomButtonUnfilled({Key? key, required this.title, this.width = 70,required this.onTap}) : super(key: key);
+  const CustomButtonUnfilled({Key? key, required this.title, this.color = MyColors.white,this.width = 70,required this.onTap}) : super(key: key);
 
   @override
   State<CustomButtonUnfilled> createState() => _CustomButtonUnfilledState();
@@ -25,9 +26,9 @@ class _CustomButtonUnfilledState extends State<CustomButtonUnfilled> {
         decoration: BoxDecoration(
             //color: MyColors.backgroundColor,
             borderRadius: BorderRadius.circular(30),
-          border: Border.all(color: MyColors.white, width: 1.5)
+          border: Border.all(color: widget.color, width: 1.5)
         ),
-        child: Center(child: Text(widget.title, style: MyTextStyle.primaryLight(fontSize: 14, fontColor:MyColors.white,fontWeight: FontWeight.w600 )),
+        child: Center(child: Text(widget.title, style: MyTextStyle.primaryLight(fontSize: 14, fontColor:widget.color,fontWeight: FontWeight.w600 )),
       ),),
     );
   }

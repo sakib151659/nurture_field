@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:nurture_field/screens/onboarding/onboarding.dart';
 import 'package:nurture_field/utils/app_colors.dart';
 import '../../components/custom_appbar/custom_appbar_inner.dart';
 import '../../components/custom_buttons/custom_button_rounded.dart';
 import '../../components/custom_text_input_field/custom_text_input_field.dart';
 import '../../components/custom_widgets/common_widgets.dart';
+import '../../utils/app_constants.dart';
 import '../../utils/app_strings.dart';
 import '../../utils/custom_text_style.dart';
+import '../../utils/local_storage_manager.dart';
 
 class ConfirmEmail extends StatefulWidget {
   final String email;
@@ -21,6 +24,7 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: const CustomAppbarInner(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -78,7 +82,8 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
                   title: "Confirm email",
                   onPress: (){
                     if(_formKey.currentState!.validate()){
-                      //Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> ConfirmEmail(email: emailController.text,)));
+                      LocalStorageManager.saveData(AppConstant.isEmailConfirmed, true);
+                      Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> const OnBoardingScreen()));
 
                     }
 

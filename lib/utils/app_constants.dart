@@ -3,8 +3,10 @@ class AppConstant{
   static const String epilogue = "epilogue";
 
   //after splash screen condition
-  static const String isOnBoarding = "isOnBoarding";
+  static const String isEmailConfirmed= "isEmailConfirmed";
+  static const String isOnBoardingCompleted = "isOnBoardingCompleted";
   static const String isCompanyProfileCompleted = "isCompanyProfileCompleted";
+  static const String isFieldCreatedSuccessfully = "isFieldCreatedSuccessfully";
 
 
 

@@ -5,4 +5,9 @@ class AssetStrings{
   static const String onBoarding2 = "assets/images/onboarding/Image02.png";
   static const String onBoarding3 = "assets/images/onboarding/Image03.png";
 
+  //icons
+  static const String editIcon = "assets/icons/edit_icon.png";
+  static const String deleteIcon = "assets/icons/delete_icon.png";
+  static const String fileIcon = "assets/icons/file_icon.png";
+
 }

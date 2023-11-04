@@ -146,8 +146,8 @@ class _CompleteCompanyProfileState extends State<CompleteCompanyProfile> {
                     bgColor: isFormFilled? MyColors.primaryColor: MyColors.customGrayDark,
                     onPress: (){
                       if(_formKey.currentState!.validate()){
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const FiledMapView()));
                         LocalStorageManager.saveData(AppConstant.isCompanyProfileCompleted, true);
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const FiledMapView()));
                       }
                     }
                 ),

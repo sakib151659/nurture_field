@@ -6,13 +6,13 @@ import 'package:nurture_field/utils/local_storage_manager.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  final isOnBoarding = await LocalStorageManager.readData(AppConstant.isOnBoarding)??true;
-  runApp(MyApp(isOnBoarding: isOnBoarding));
+  final isOnBoardingCompleted = await LocalStorageManager.readData(AppConstant.isOnBoardingCompleted)??false;
+  runApp(MyApp(isOnBoardingCompleted: isOnBoardingCompleted));
 }
 
 class MyApp extends StatelessWidget {
-  final bool ?isOnBoarding;
-  const MyApp({super.key, this.isOnBoarding});
+  final bool ?isOnBoardingCompleted;
+  const MyApp({super.key, this.isOnBoardingCompleted});
 
   // This widget is the root of your application.
   @override
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen(isOnBoarding: isOnBoarding!),
+      home: SplashScreen(isOnBoardingCompleted: isOnBoardingCompleted!),
     );
   }
 }
