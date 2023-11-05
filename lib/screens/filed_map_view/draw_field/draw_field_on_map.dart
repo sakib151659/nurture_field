@@ -1,9 +1,14 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:nurture_field/components/custom_appbar/custom_appbar_inner.dart';
 import 'package:nurture_field/components/custom_text_input_field/search_input_field.dart';
 import 'package:nurture_field/utils/app_colors.dart';
-
+import '../../../components/custom_buttons/custom_button_rounded.dart';
+import '../../../components/custom_buttons/custom_button_unfilled.dart';
+import '../../../utils/asset_strings.dart';
 import '../../../utils/custom_text_style.dart';
+import '../common_screen/field_create.dart';
 
 class DrawFieldOnMap extends StatefulWidget {
   const DrawFieldOnMap({Key? key}) : super(key: key);
@@ -18,41 +23,113 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppbarInner(),
-      body: Stack(
+      body: Column(
         children: [
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: SearchInputField(
-                    controller: searchController,
-                    textInputType: TextInputType.text,
-                    prefix: Icon(Icons.search),
-                    hintText: "Search location",
-                    onChangedCallBack: (value){
-                      print(value);
-                    },
-                ),
-              ),
-
-
-
-              /// REPLACE THIS IMAGE WITH GOOGLE MAP
-              Expanded(child: Image.network("https://t3.ftcdn.net/jpg/03/62/18/34/360_F_362183460_4n0UlAKQ39ATMMkUxBEXmpLo1wQujTqd.jpg", fit: BoxFit.fitHeight,)),
-
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: SearchInputField(
+                controller: searchController,
+                textInputType: TextInputType.text,
+                prefix: Icon(Icons.search),
+                hintText: "Search location",
+                onChangedCallBack: (value){
+                  print(value);
+                },
+            ),
           ),
 
-          Align(
-            alignment: Alignment.bottomCenter,
-              child: addFieldCard())
+          const SizedBox(height: 15,),
+
+
+
+          Expanded(
+            child: Stack(
+              children: [
+                /// REPLACE THIS IMAGE WITH GOOGLE MAP
+                SizedBox(
+                  height: double.infinity,
+                    child: Image.network("https://t3.ftcdn.net/jpg/03/62/18/34/360_F_362183460_4n0UlAKQ39ATMMkUxBEXmpLo1wQujTqd.jpg",fit: BoxFit.cover,)),
+                fieldEditDeleteCard(),
+
+                if(true)...[
+                  Align(
+                      alignment: Alignment.bottomCenter,
+                      child: addFieldCard())
+                ]
+
+              ],
+            ),
+          ),
+
         ],
       ),
     );
   }
 
 
-  // widgets
+
+
+
+  /// custom widgets
+  Widget fieldEditDeleteCard(){
+    return Container(
+      height: 80,
+      padding: const EdgeInsets.all(15),
+      margin: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: MyColors.white
+      ),
+      child: Row(
+        children: [
+          const ImageIcon(AssetImage(AssetStrings.fileIcon)),
+          const SizedBox(width: 15,),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Field",
+                  style: MyTextStyle.primaryBold(fontSize: 16),
+                ),
+                //const SizedBox(height: 2,),
+                Text("0.75 ha",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: MyTextStyle.secondaryLight(fontSize: 15),
+                ),
+              ],
+            ),
+          ),
+
+          InkWell(
+              onTap: (){
+
+                /// use this when draw completed
+                showModalBottomSheet(
+                  context: context,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  builder: (BuildContext context) {
+                    return bottomSheet();
+                  },
+                );
+
+              },
+              child: const ImageIcon(AssetImage(AssetStrings.editIcon), color: MyColors.customGrayDark)
+          ),
+          const SizedBox(width: 15,),
+          InkWell(
+              onTap: (){
+
+              },
+              child: const ImageIcon(AssetImage(AssetStrings.deleteIcon), color: MyColors.customGrayDark,)
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget addFieldCard(){
     return Container( 
       height: 110,
@@ -64,7 +141,7 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
       ),
       child: Row(
         children: [
-          const Icon(Icons.add_location_alt_outlined, size: 35,),
+          const ImageIcon(AssetImage("assets/icons/add_plus.png"), size: 30,color: MyColors.primaryColor,),
           const SizedBox(width: 15,),
           Expanded(
             child: Column(
@@ -86,4 +163,40 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
       ),
     );
   }
+
+
+  //bottom sheets
+  Widget bottomSheet(){
+    return SizedBox(
+      height: 200,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              CustomButtonRounded(
+                  title: "Save field",
+                  bgColor: MyColors.primaryColor,
+                  onPress: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const FieldCreate()));
+                  }
+              ),
+              const SizedBox(height: 20,),
+              CustomButtonUnfilled(
+                  title: "Cancel drawing",
+                  width: double.infinity,
+                  color: MyColors.secondaryTextColor,
+                  onTap: (){
+                    Navigator.of(context).pop();
+                  }
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
 }
