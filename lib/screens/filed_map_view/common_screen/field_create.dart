@@ -8,6 +8,7 @@ import '../../../utils/app_colors.dart';
 import '../../../utils/app_strings.dart';
 import '../../../utils/asset_strings.dart';
 import '../../../utils/custom_text_style.dart';
+import 'crop_field_created_successfully.dart';
 
 class FieldCreate extends StatefulWidget {
   const FieldCreate({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class _FieldCreateState extends State<FieldCreate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppbarInner(title: "Create a field",),
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Form(
@@ -85,7 +87,7 @@ class _FieldCreateState extends State<FieldCreate> {
                   title: "Field name",
                   widget: CustomTextInputField(
                     controller: fieldNameController,
-                    textInputType: TextInputType.number,
+                    textInputType: TextInputType.text,
                     hintText: "Field name",
                     onChanged: (value){
                     },
@@ -103,7 +105,7 @@ class _FieldCreateState extends State<FieldCreate> {
                   title: "Crop type",
                   widget: CustomTextInputField(
                     controller: cropNameController,
-                    textInputType: TextInputType.number,
+                    textInputType: TextInputType.text,
                     hintText: "Type here",
                     onChanged: (value){
                     },
@@ -137,7 +139,10 @@ class _FieldCreateState extends State<FieldCreate> {
                         title: "Save",
                         bgColor: MyColors.primaryColor,
                         onPress: (){
-                          //Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const FieldCreate()));
+                          if(_formKey.currentState!.validate()){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const CropFieldCreatedSuccessfully()));
+                          }
+
                         }
                     ),
                   ),
