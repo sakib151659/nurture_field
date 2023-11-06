@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../components/custom_buttons/custom_button_rounded.dart';
 import '../../../components/custom_buttons/custom_button_unfilled.dart';
+import '../../../landing_page.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/custom_text_style.dart';
 
@@ -58,7 +59,7 @@ class _CropFieldCreatedSuccessfullyState extends State<CropFieldCreatedSuccessfu
                       width: double.infinity,
                       color: MyColors.secondaryTextColor,
                       onTap: (){
-                        //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>Home()));
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const LandingPage()));
                       }
                   ),
                   const SizedBox(height: 30,),
