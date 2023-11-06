@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nurture_field/components/custom_appbar/custom_appbar_inner.dart';
 import 'package:nurture_field/components/custom_text_input_field/search_input_field.dart';
 import 'package:nurture_field/utils/app_colors.dart';
@@ -46,9 +47,16 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
             child: Stack(
               children: [
                 /// REPLACE THIS IMAGE WITH GOOGLE MAP
-                SizedBox(
-                  height: double.infinity,
-                    child: Image.network("https://t3.ftcdn.net/jpg/03/62/18/34/360_F_362183460_4n0UlAKQ39ATMMkUxBEXmpLo1wQujTqd.jpg",fit: BoxFit.cover,)),
+                // SizedBox(
+                //   height: double.infinity,
+                //     child: Image.network("https://t3.ftcdn.net/jpg/03/62/18/34/360_F_362183460_4n0UlAKQ39ATMMkUxBEXmpLo1wQujTqd.jpg",fit: BoxFit.cover,)),
+
+                GoogleMap(
+                    initialCameraPosition: CameraPosition(target: LatLng(37.523244, -122.4543233),
+                      //zoom: 14
+                    ),
+
+                ),
                 fieldEditDeleteCard(),
 
                 if(true)...[
