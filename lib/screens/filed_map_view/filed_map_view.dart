@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nurture_field/screens/filed_map_view/set_coordinates/set_coordinates_manually.dart';
 import 'package:nurture_field/utils/app_colors.dart';
+import 'package:nurture_field/utils/asset_strings.dart';
 
 import '../../utils/custom_text_style.dart';
 import 'draw_field/draw_field_on_map.dart';
@@ -53,7 +54,7 @@ class _FiledMapViewState extends State<FiledMapView> {
                 customOption(
                   bgColor: MyColors.greenBg,
                     borderColor: MyColors.primaryColor,
-                    icon: Icons.draw_outlined,
+                    icon: AssetStrings.filedIcon,
                     title: "Draw field on map",
                     subTitle: "Draw your field on the map, creating a polygon using the drawing tool.",
                     onTap: (){
@@ -63,7 +64,7 @@ class _FiledMapViewState extends State<FiledMapView> {
                 ),
                 const SizedBox(height: 15,),
                 customOption(
-                    icon: Icons.location_on_outlined,
+                    icon: AssetStrings.locationIcon,
                     title: "Set Coordinates manually",
                     subTitle: "fill your land coordinates on input",
                     onTap: (){
@@ -75,7 +76,7 @@ class _FiledMapViewState extends State<FiledMapView> {
                 Stack(
                   children: [
                     customOption(
-                        icon: Icons.upload_outlined,
+                        icon: AssetStrings.uploadIcon,
                         title: "Draw field on map",
                         subTitle: "Support formates are: .kml, .kmz .shp, or Zip",
                         onTap: (){}
@@ -101,7 +102,7 @@ class _FiledMapViewState extends State<FiledMapView> {
   Widget customOption({
     Color bgColor= MyColors.white,
     Color borderColor = MyColors.borderColor,
-    required IconData icon,
+    required String icon,
     required String title,
     required String subTitle,
     required Function() onTap
@@ -118,7 +119,7 @@ class _FiledMapViewState extends State<FiledMapView> {
         ),
         child: Column(
           children: [
-            Icon(icon, size: 33,),
+            ImageIcon(AssetImage(icon), size: 33,),
             const SizedBox(height: 5,),
             Text(title,
               style: MyTextStyle.primaryBold(fontSize: 20),

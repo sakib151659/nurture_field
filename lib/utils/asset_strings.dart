@@ -9,5 +9,8 @@ class AssetStrings{
   static const String editIcon = "assets/icons/edit_icon.png";
   static const String deleteIcon = "assets/icons/delete_icon.png";
   static const String fileIcon = "assets/icons/file_icon.png";
+  static const String filedIcon = "assets/icons/field_icon.png";
+  static const String locationIcon = "assets/icons/location_icon.png";
+  static const String uploadIcon = "assets/icons/upload_icon.png";
 
 }
