@@ -13,7 +13,7 @@ class MyTextStyle{
     );
   }
 
-  static primaryMedium({Color fontColor = MyColors.primaryTextColor, double fontSize = 24,FontWeight fontWeight = FontWeight.w500}){
+  static primaryMedium({Color fontColor = MyColors.primaryTextColor, double fontSize = 24,FontWeight fontWeight = FontWeight.w600}){
     return TextStyle(
         fontFamily: AppConstant.epilogue,
         color: fontColor,

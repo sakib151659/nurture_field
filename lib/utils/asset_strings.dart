@@ -22,5 +22,11 @@ class AssetStrings{
   static const String notificationUnfilledIcon = "assets/icons/notification_unfilled_icon.png";
   static const String settingsFilledIcon = "assets/icons/settings_filled_icon.png";
   static const String settingsUnfilledIcon = "assets/icons/settings_unfilled_icon.png";
+  static const String rainIcon = "assets/icons/rain_icon.png";
+  static const String humidityIcon = "assets/icons/humidity_icon.png";
+  static const String cloudRainIcon = "assets/icons/cloud_rain_icon.png";
+  static const String thermometerColdIcon = "assets/icons/thermometer_cold_icon.png";
+  static const String thermometerIcon = "assets/icons/thermometer_icon.png";
+  static const String windIcon = "assets/icons/wind_icon.png";
 
 }

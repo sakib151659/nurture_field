@@ -114,6 +114,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nurture_field/screens/dashboards/home/home_page.dart';
 import 'package:nurture_field/utils/app_colors.dart';
 import 'package:nurture_field/utils/asset_strings.dart';
@@ -145,61 +146,66 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
 
-    return SafeArea(
-      child: Scaffold(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarColor: selectedIndex == 0? MyColors.customGreen:MyColors.white,
+      ),
+      child: SafeArea(
+        child: Scaffold(
 
-        body: _screens[selectedIndex],
-        bottomNavigationBar: BottomAppBar( //bottom navigation bar on scaffold
-          color:MyColors.white,
-          surfaceTintColor: MyColors.white,
-          shadowColor: MyColors.customGrayDark,
-          height: 80,
-          elevation: 12,
-          child: Row( //children inside bottom appbar
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              customIcon(
-                  filledIcon: AssetStrings.homeFilledIcon,
-                  unfilledIcon: AssetStrings.homeUnfilledIcon,
-                  title: "Home",
-                  index: 0,
-                  onTap: (){
-                setState(() {
-                  selectedIndex = 0;
-                });
-              }),
-              customIcon(
-                filledIcon: AssetStrings.forecastFilledIcon,
-                unfilledIcon: AssetStrings.forecastUnfilledIcon,
-                title: "Forecast", index: 1,
-                onTap: (){
+          body: _screens[selectedIndex],
+          bottomNavigationBar: BottomAppBar( //bottom navigation bar on scaffold
+            color:MyColors.white,
+            surfaceTintColor: MyColors.white,
+            shadowColor: MyColors.customGrayDark,
+            height: 80,
+            elevation: 12,
+            child: Row( //children inside bottom appbar
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                customIcon(
+                    filledIcon: AssetStrings.homeFilledIcon,
+                    unfilledIcon: AssetStrings.homeUnfilledIcon,
+                    title: "Home",
+                    index: 0,
+                    onTap: (){
                   setState(() {
-                    selectedIndex = 1;
+                    selectedIndex = 0;
                   });
-              }),
-              customIcon(
-                filledIcon: AssetStrings.mapFilledIcon,
-                  unfilledIcon: AssetStrings.mapUnfilledIcon, title: "Map", index: 2, onTap: (){
-                setState(() {
-                  selectedIndex = 2;
-                });
-              }),
-              customIcon(
-                  filledIcon: AssetStrings.notificationFilledIcon,
-                  unfilledIcon: AssetStrings.notificationUnfilledIcon, title: "Notification", index: 3, onTap: (){
-                setState(() {
-                  selectedIndex = 3;
-                });
-              }),
-              customIcon(
-                  filledIcon: AssetStrings.settingsFilledIcon,
-                  unfilledIcon: AssetStrings.settingsUnfilledIcon, title: "Setting", index: 4, onTap: (){
-                setState(() {
-                  selectedIndex = 4;
-                });
-              }),
-            ],
+                }),
+                customIcon(
+                  filledIcon: AssetStrings.forecastFilledIcon,
+                  unfilledIcon: AssetStrings.forecastUnfilledIcon,
+                  title: "Forecast", index: 1,
+                  onTap: (){
+                    setState(() {
+                      selectedIndex = 1;
+                    });
+                }),
+                customIcon(
+                  filledIcon: AssetStrings.mapFilledIcon,
+                    unfilledIcon: AssetStrings.mapUnfilledIcon, title: "Map", index: 2, onTap: (){
+                  setState(() {
+                    selectedIndex = 2;
+                  });
+                }),
+                customIcon(
+                    filledIcon: AssetStrings.notificationFilledIcon,
+                    unfilledIcon: AssetStrings.notificationUnfilledIcon, title: "Notification", index: 3, onTap: (){
+                  setState(() {
+                    selectedIndex = 3;
+                  });
+                }),
+                customIcon(
+                    filledIcon: AssetStrings.settingsFilledIcon,
+                    unfilledIcon: AssetStrings.settingsUnfilledIcon, title: "Setting", index: 4, onTap: (){
+                  setState(() {
+                    selectedIndex = 4;
+                  });
+                }),
+              ],
+            ),
           ),
         ),
       ),

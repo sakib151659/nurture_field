@@ -9,6 +9,7 @@ class MyColors {
   static const Color greenTransparent = Color.fromRGBO(20, 56, 11, 0.63);
   static const Color greenBg = Color.fromRGBO(108, 155, 96, 0.09);
   static const Color borderColor = Color.fromRGBO(228, 232, 231, 1);
+  static const Color customGreen = Color.fromRGBO(40, 101, 49, 1);
 
 
   static const Color cardBackgroundColor = Color.fromRGBO(249, 251, 247, 1);
@@ -23,7 +24,7 @@ class MyColors {
   static const Color customPinkLight = Color.fromRGBO(255, 97, 80, 0.2);
   static const Color customRed = Color.fromRGBO(255, 97, 80, 1);
   static const Color customGery = Color.fromRGBO(232, 239, 221, 1);
-  static const Color customGeryLight = Color.fromRGBO(248, 248, 248, 1);
+  static const Color customGeryLight = Color.fromRGBO(244, 246, 246, 1);
   static const Color customGrayDark = Color.fromRGBO(120, 120, 120, 1);
   static const Color unSelectedBackground = Color.fromRGBO(249, 251, 247, 1);
   static const Color spinnerSelectedColor = Color.fromRGBO(232, 239, 221, 1);
