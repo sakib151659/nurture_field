@@ -159,27 +159,42 @@ class _LandingPageState extends State<LandingPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              customIcon(icon: AssetStrings.homeFilledIcon, title: "Home", index: 0, onTap: (){
+              customIcon(
+                  filledIcon: AssetStrings.homeFilledIcon,
+                  unfilledIcon: AssetStrings.homeUnfilledIcon,
+                  title: "Home",
+                  index: 0,
+                  onTap: (){
                 setState(() {
                   selectedIndex = 0;
                 });
               }),
-              customIcon(icon: AssetStrings.forecastUnfilledIcon, title: "Forecast", index: 1, onTap: (){
-                setState(() {
-                  selectedIndex = 1;
-                });
+              customIcon(
+                filledIcon: AssetStrings.forecastFilledIcon,
+                unfilledIcon: AssetStrings.forecastUnfilledIcon,
+                title: "Forecast", index: 1,
+                onTap: (){
+                  setState(() {
+                    selectedIndex = 1;
+                  });
               }),
-              customIcon(icon: AssetStrings.mapUnfilledIcon, title: "Map", index: 2, onTap: (){
+              customIcon(
+                filledIcon: AssetStrings.mapFilledIcon,
+                  unfilledIcon: AssetStrings.mapUnfilledIcon, title: "Map", index: 2, onTap: (){
                 setState(() {
                   selectedIndex = 2;
                 });
               }),
-              customIcon(icon: AssetStrings.notificationUnfilledIcon, title: "Notification", index: 3, onTap: (){
+              customIcon(
+                  filledIcon: AssetStrings.notificationFilledIcon,
+                  unfilledIcon: AssetStrings.notificationUnfilledIcon, title: "Notification", index: 3, onTap: (){
                 setState(() {
                   selectedIndex = 3;
                 });
               }),
-              customIcon(icon: AssetStrings.settingsUnfilledIcon, title: "Setting", index: 4, onTap: (){
+              customIcon(
+                  filledIcon: AssetStrings.settingsFilledIcon,
+                  unfilledIcon: AssetStrings.settingsUnfilledIcon, title: "Setting", index: 4, onTap: (){
                 setState(() {
                   selectedIndex = 4;
                 });
@@ -191,13 +206,13 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 
-  Widget customIcon({required String icon, required String title, required int index, required Function() onTap}){
+  Widget customIcon({required String filledIcon,required String unfilledIcon, required String title, required int index, required Function() onTap}){
     return InkWell(
       onTap: onTap,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ImageIcon(AssetImage(icon), size: 25,color: index==selectedIndex?MyColors.primaryTextColor:MyColors.secondaryTextColor,),
+          index==selectedIndex? ImageIcon(AssetImage(filledIcon), size: 25,) : ImageIcon(AssetImage(unfilledIcon), size: 24, color: MyColors.secondaryTextColor,),
           const SizedBox(height: 2,),
           Text(title, style: MyTextStyle.primaryLight(fontSize: 12,fontColor: index==selectedIndex?MyColors.primaryTextColor:MyColors.secondaryTextColor,fontWeight: FontWeight.w600),)
         ],

@@ -13,9 +13,14 @@ class AssetStrings{
   static const String locationIcon = "assets/icons/location_icon.png";
   static const String uploadIcon = "assets/icons/upload_icon.png";
   static const String homeFilledIcon = "assets/icons/home_filled_icon.png";
+  static const String homeUnfilledIcon = "assets/icons/home_unfilled_icon.png";
+  static const String forecastFilledIcon = "assets/icons/forecast_filled_icon.png";
   static const String forecastUnfilledIcon = "assets/icons/forecast_unfilled_icon.png";
+  static const String mapFilledIcon = "assets/icons/mapp_filled_icon.png";
   static const String mapUnfilledIcon = "assets/icons/map_unfilled_icon.png";
+  static const String notificationFilledIcon = "assets/icons/notification_filled_icon.png";
   static const String notificationUnfilledIcon = "assets/icons/notification_unfilled_icon.png";
+  static const String settingsFilledIcon = "assets/icons/settings_filled_icon.png";
   static const String settingsUnfilledIcon = "assets/icons/settings_unfilled_icon.png";
 
 }
