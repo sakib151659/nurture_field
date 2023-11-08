@@ -52,9 +52,16 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
                 //     child: Image.network("https://t3.ftcdn.net/jpg/03/62/18/34/360_F_362183460_4n0UlAKQ39ATMMkUxBEXmpLo1wQujTqd.jpg",fit: BoxFit.cover,)),
 
                 GoogleMap(
-                    initialCameraPosition: CameraPosition(target: LatLng(37.523244, -122.4543233),
-                      //zoom: 14
+                    initialCameraPosition: CameraPosition(target: LatLng(5.3658, 100.2728),
+                      zoom: 14
                     ),
+
+                  markers: {
+                      Marker(
+                        markerId: MarkerId("test"),
+                        position: LatLng(5.3658, 100.2728)
+                      )
+                  },
 
                 ),
                 fieldEditDeleteCard(),
