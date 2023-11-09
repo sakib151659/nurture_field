@@ -41,8 +41,8 @@ class _SearchInputFieldState extends State<SearchInputField> {
       decoration: InputDecoration(
         prefixIcon: widget.prefix,
         suffixIcon: widget.suffix,
-        fillColor: MyColors.customGery,
-        filled: true,
+        fillColor: MyColors.white,
+        //filled: true,
         contentPadding: const EdgeInsets.only(left: 10),
         hintText: widget.hintText,
         hintStyle: MyTextStyle.primaryLight(
@@ -52,7 +52,10 @@ class _SearchInputFieldState extends State<SearchInputField> {
           borderRadius: BorderRadius.all(
             Radius.circular(8),
           ),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(
+            color: MyColors.borderColor,
+            width: 0.5,
+          ),
         ),
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
