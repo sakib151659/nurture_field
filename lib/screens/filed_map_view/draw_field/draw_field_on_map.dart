@@ -67,26 +67,19 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
           Expanded(
             child: Stack(
               children: [
-                /// REPLACE THIS IMAGE WITH GOOGLE MAP
-                // SizedBox(
-                //   height: double.infinity,
-                //     child: Image.network("https://t3.ftcdn.net/jpg/03/62/18/34/360_F_362183460_4n0UlAKQ39ATMMkUxBEXmpLo1wQujTqd.jpg",fit: BoxFit.cover,)),
-
                 GoogleMap(
                   mapType: MapType.satellite,
                     initialCameraPosition: CameraPosition(target: LatLng(23.832937, 89.886904),
                       zoom: 15
                     ),
                   onMapCreated: (GoogleMapController controller) {
-                      print("lat long");
-                    print(controller.getLatLng(ScreenCoordinate(x: 10, y: 20)));
                   },
                   polylines: {
                     Polyline(
                       polylineId: PolylineId("polyline"),
-                      color: Colors.blue,
+                      color: Colors.white,
                       points: fieldCoordinates,
-                      width: 5,
+                      width: 2,
                     ),
                   },
                   markers: {
