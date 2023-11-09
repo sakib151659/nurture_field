@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nurture_field/components/custom_appbar/custom_appbar_inner.dart';
 import 'package:nurture_field/components/custom_buttons/custom_button_unfilled.dart';
 import 'package:nurture_field/components/custom_text_input_field/search_input_field.dart';
@@ -9,7 +10,9 @@ import '../../../utils/custom_text_style.dart';
 import '../common_screen/field_create.dart';
 
 class ManuallyMapView extends StatefulWidget {
-  const ManuallyMapView({Key? key}) : super(key: key);
+  final double lat;
+  final double long;
+  const ManuallyMapView({Key? key, required this.lat, required this.long}) : super(key: key);
 
   @override
   State<ManuallyMapView> createState() => _ManuallyMapViewState();
@@ -17,6 +20,20 @@ class ManuallyMapView extends StatefulWidget {
 
 class _ManuallyMapViewState extends State<ManuallyMapView> {
   TextEditingController searchController = TextEditingController();
+  BitmapDescriptor markerIcon2 = BitmapDescriptor.defaultMarker;
+
+  void customIcon(){
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), AssetStrings.positionMarkerIcon,).then((value){
+      setState(() {markerIcon2 = value;});
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    customIcon();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +62,22 @@ class _ManuallyMapViewState extends State<ManuallyMapView> {
             children: [
               SizedBox(
                   height: MediaQuery.of(context).size.height*.60,
-                  child: Image.network("https://t3.ftcdn.net/jpg/03/62/18/34/360_F_362183460_4n0UlAKQ39ATMMkUxBEXmpLo1wQujTqd.jpg", fit: BoxFit.fitHeight,)),
+                  child: GoogleMap(
+                    mapType: MapType.satellite,
+                    initialCameraPosition: CameraPosition(target: LatLng(widget.lat, widget.long),
+                        zoom: 15
+                    ),
+                    onMapCreated: (GoogleMapController controller) {
+                    },
+                    markers: {
+                      Marker(
+                          markerId: MarkerId("test"),
+                          position: LatLng(widget.lat, widget.long),
+                          icon:markerIcon2
+                      ),
+                    },
+
+                  ),),
               Align(
                   alignment: Alignment.topCenter,
                   child: fieldEditDeleteCard()),

@@ -90,7 +90,7 @@ class _SetCoordinatesManuallyState extends State<SetCoordinatesManually> {
                       bgColor: MyColors.primaryColor,
                       onPress: (){
                         if(_formKey.currentState!.validate()){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> ManuallyMapView()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> ManuallyMapView(lat: double.parse(latController.text.toString()),long: double.parse(longController.text.toString()),)));
                         }
                       }
                   ),

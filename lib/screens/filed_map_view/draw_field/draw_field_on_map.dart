@@ -24,14 +24,7 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
   bool drawLineStart = false;
   double lat = 0;
   double long = 0;
-
-// Define the coordinates for the rectangle vertices
-  List<LatLng> fieldCoordinates = [
-    // LatLng(37.78929569889809, -122.41535156965257),
-    // LatLng(37.78947719524691, -122.4137033522129),
-    // LatLng(37.78846769895026, -122.41353370249271),
-    // LatLng(37.78841974090901, -122.4151886254549),
-  ];
+  List<LatLng> fieldCoordinates = [];
   BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
 
 
@@ -39,7 +32,6 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
     BitmapDescriptor.fromAssetImage(const ImageConfiguration(), AssetStrings.plusIcon,).then((value){
       setState(() {markerIcon = value;});
     });
-
   }
 
   @override

@@ -30,5 +30,6 @@ class AssetStrings{
   static const String windIcon = "assets/icons/wind_icon.png";
   static const String plusIcon = "assets/icons/plus_icon.png";
   static const String positionPointIcon = "assets/icons/position_point_icon.png";
+  static const String positionMarkerIcon = "assets/icons/position_marker_icon.png";
 
 }
