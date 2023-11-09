@@ -10,6 +10,7 @@ class MyColors {
   static const Color greenBg = Color.fromRGBO(108, 155, 96, 0.09);
   static const Color borderColor = Color.fromRGBO(228, 232, 231, 1);
   static const Color customGreen = Color.fromRGBO(40, 101, 49, 1);
+  static const Color selectedArea = Color.fromRGBO(108, 155, 96, 0.3);
 
 
   static const Color cardBackgroundColor = Color.fromRGBO(249, 251, 247, 1);

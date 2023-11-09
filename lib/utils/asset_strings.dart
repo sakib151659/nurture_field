@@ -28,5 +28,7 @@ class AssetStrings{
   static const String thermometerColdIcon = "assets/icons/thermometer_cold_icon.png";
   static const String thermometerIcon = "assets/icons/thermometer_icon.png";
   static const String windIcon = "assets/icons/wind_icon.png";
+  static const String plusIcon = "assets/icons/plus_icon.png";
+  static const String positionPointIcon = "assets/icons/position_point_icon.png";
 
 }

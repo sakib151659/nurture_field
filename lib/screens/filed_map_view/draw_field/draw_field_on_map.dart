@@ -1,9 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nurture_field/components/custom_appbar/custom_appbar_inner.dart';
 import 'package:nurture_field/components/custom_text_input_field/search_input_field.dart';
+import 'package:nurture_field/screens/filed_map_view/draw_field/drawn_completed_map.dart';
 import 'package:nurture_field/utils/app_colors.dart';
 import '../../../components/custom_buttons/custom_button_rounded.dart';
 import '../../../components/custom_buttons/custom_button_unfilled.dart';
@@ -20,6 +19,36 @@ class DrawFieldOnMap extends StatefulWidget {
 
 class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
   TextEditingController searchController = TextEditingController();
+
+  bool isAddYourFieldCardVisible = true;
+  bool drawLineStart = false;
+  double lat = 0;
+  double long = 0;
+
+// Define the coordinates for the rectangle vertices
+  List<LatLng> fieldCoordinates = [
+    // LatLng(37.78929569889809, -122.41535156965257),
+    // LatLng(37.78947719524691, -122.4137033522129),
+    // LatLng(37.78846769895026, -122.41353370249271),
+    // LatLng(37.78841974090901, -122.4151886254549),
+  ];
+  BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+
+
+  customIcon(){
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), AssetStrings.plusIcon,).then((value){
+      setState(() {markerIcon = value;});
+    });
+
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    customIcon();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,21 +81,59 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
                 //     child: Image.network("https://t3.ftcdn.net/jpg/03/62/18/34/360_F_362183460_4n0UlAKQ39ATMMkUxBEXmpLo1wQujTqd.jpg",fit: BoxFit.cover,)),
 
                 GoogleMap(
-                    initialCameraPosition: CameraPosition(target: LatLng(5.3658, 100.2728),
-                      zoom: 14
+                  mapType: MapType.satellite,
+                    initialCameraPosition: CameraPosition(target: LatLng(23.832937, 89.886904),
+                      zoom: 15
                     ),
-
+                  onMapCreated: (GoogleMapController controller) {
+                      print("lat long");
+                    print(controller.getLatLng(ScreenCoordinate(x: 10, y: 20)));
+                  },
+                  polylines: {
+                    Polyline(
+                      polylineId: PolylineId("polyline"),
+                      color: Colors.blue,
+                      points: fieldCoordinates,
+                      width: 5,
+                    ),
+                  },
                   markers: {
                       Marker(
                         markerId: MarkerId("test"),
-                        position: LatLng(5.3658, 100.2728)
-                      )
+                        position: LatLng(23.832937, 89.886904),
+                        draggable: true,
+
+                        onDragEnd: (value){
+                          lat = value.latitude;
+                          long = value.longitude;
+                          if(drawLineStart == true){
+                            setState(() {
+                              fieldCoordinates.add(LatLng(value.latitude, value.longitude));
+                              print(value);
+                            });
+                          }
+                        },
+                        onTap: (){
+                          print("fieldCoordinates.length ${fieldCoordinates.length}");
+                          if(fieldCoordinates.isEmpty){
+                            setState(() {
+                              drawLineStart = true;
+                              isAddYourFieldCardVisible = false;
+                              fieldCoordinates.add(LatLng(lat, long)); // for adding the first coordinates in the list
+                            });
+                          }
+                          if(fieldCoordinates.length>3){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>DrawnCompletedMap(fieldLatLong:fieldCoordinates,lat: lat,long: long,)));
+                          }
+                        },
+                        icon:markerIcon
+                      ),
                   },
 
                 ),
-                fieldEditDeleteCard(),
+                //fieldEditDeleteCard(),
 
-                if(true)...[
+                if(isAddYourFieldCardVisible)...[
                   Align(
                       alignment: Alignment.bottomCenter,
                       child: addFieldCard())
@@ -86,64 +153,64 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
 
 
   /// custom widgets
-  Widget fieldEditDeleteCard(){
-    return Container(
-      height: 80,
-      padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: MyColors.white
-      ),
-      child: Row(
-        children: [
-          const ImageIcon(AssetImage(AssetStrings.fileIcon)),
-          const SizedBox(width: 15,),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Field",
-                  style: MyTextStyle.primaryBold(fontSize: 16),
-                ),
-                //const SizedBox(height: 2,),
-                Text("0.75 ha",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: MyTextStyle.secondaryLight(fontSize: 15),
-                ),
-              ],
-            ),
-          ),
-
-          InkWell(
-              onTap: (){
-
-                /// use this when draw completed
-                showModalBottomSheet(
-                  context: context,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  builder: (BuildContext context) {
-                    return bottomSheet();
-                  },
-                );
-
-              },
-              child: const ImageIcon(AssetImage(AssetStrings.editIcon), color: MyColors.customGrayDark)
-          ),
-          const SizedBox(width: 15,),
-          InkWell(
-              onTap: (){
-
-              },
-              child: const ImageIcon(AssetImage(AssetStrings.deleteIcon), color: MyColors.customGrayDark,)
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget fieldEditDeleteCard(){
+  //   return Container(
+  //     height: 80,
+  //     padding: const EdgeInsets.all(15),
+  //     margin: const EdgeInsets.all(15),
+  //     decoration: BoxDecoration(
+  //         borderRadius: BorderRadius.circular(8),
+  //         color: MyColors.white
+  //     ),
+  //     child: Row(
+  //       children: [
+  //         const ImageIcon(AssetImage(AssetStrings.fileIcon)),
+  //         const SizedBox(width: 15,),
+  //         Expanded(
+  //           child: Column(
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             children: [
+  //               Text("Field",
+  //                 style: MyTextStyle.primaryBold(fontSize: 16),
+  //               ),
+  //               //const SizedBox(height: 2,),
+  //               Text("0.75 ha",
+  //                 maxLines: 2,
+  //                 overflow: TextOverflow.ellipsis,
+  //                 style: MyTextStyle.secondaryLight(fontSize: 15),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //
+  //         InkWell(
+  //             onTap: (){
+  //
+  //               /// use this when draw completed
+  //               showModalBottomSheet(
+  //                 context: context,
+  //                 shape: RoundedRectangleBorder(
+  //                   borderRadius: BorderRadius.circular(10.0),
+  //                 ),
+  //                 builder: (BuildContext context) {
+  //                   return bottomSheet();
+  //                 },
+  //               );
+  //
+  //             },
+  //             child: const ImageIcon(AssetImage(AssetStrings.editIcon), color: MyColors.customGrayDark)
+  //         ),
+  //         const SizedBox(width: 15,),
+  //         InkWell(
+  //             onTap: (){
+  //
+  //             },
+  //             child: const ImageIcon(AssetImage(AssetStrings.deleteIcon), color: MyColors.customGrayDark,)
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget addFieldCard(){
     return Container( 
