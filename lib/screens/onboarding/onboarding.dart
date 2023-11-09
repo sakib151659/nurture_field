@@ -61,7 +61,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
             //],
             Expanded(
-              flex: 8,
+              flex: 9,
               child: PageView(
                 controller: controller,
                 onPageChanged: (index) {
