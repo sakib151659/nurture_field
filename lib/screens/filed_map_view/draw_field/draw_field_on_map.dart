@@ -22,8 +22,8 @@ class _DrawFieldOnMapState extends State<DrawFieldOnMap> {
 
   bool isAddYourFieldCardVisible = true;
   bool drawLineStart = false;
-  double lat = 0;
-  double long = 0;
+  double lat = 23.832937;
+  double long = 89.886904;
   List<LatLng> fieldCoordinates = [];
   BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
 

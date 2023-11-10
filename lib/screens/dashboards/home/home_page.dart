@@ -14,16 +14,28 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          heading(),
-          
-          Text("new start..")
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            heading(),
 
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  weeklyCalender(),
+                ],
+              ),
+            )
+
+
+          ],
+        ),
       ),
     );
   }
+
+
 
 
   // custom widgets
@@ -145,6 +157,89 @@ class _HomePageState extends State<HomePage> {
           Text(value, style: MyTextStyle.primaryMedium(fontSize: 14, fontWeight: FontWeight.w600),),
         ],
       ),
+    );
+  }
+
+  Widget weeklyCalender() {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          color: MyColors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: MyColors.borderColor)
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              customIndicator(title: "ETO", color: MyColors.customBlue),
+              const SizedBox(width: 10,),
+              customIndicator(title: "ETC", color: MyColors.customRed),
+            ],
+          ),
+
+          const SizedBox(height: 20,),
+          //ETC
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text("23", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
+              Text("34", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
+              Text("43", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
+              Text("23", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
+              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
+              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
+              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
+            ],
+          ),
+          const SizedBox(height: 10,),
+          //ETO
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text("56", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
+              Text("35", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
+              Text("75", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
+              Text("45", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
+              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
+              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
+              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
+            ],
+          ),
+
+          const SizedBox(height: 10,),
+          //Days
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text("F", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
+              Text("S", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
+              Text("S", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
+              Text("M", style: MyTextStyle.primaryLight(fontColor: MyColors.primaryTextColor, fontWeight: FontWeight.w600),),
+              Text("T", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
+              Text("W", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
+              Text("T", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget customIndicator({required String title, required Color color}){
+    return Row(
+      children: [
+        Container(
+          height: 5,
+          width: 12,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+
+        Text(" $title", style: MyTextStyle.primaryLight(),),
+      ],
     );
   }
 }
