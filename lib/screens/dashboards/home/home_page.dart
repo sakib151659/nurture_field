@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
 
             // heading and weather card
             heading(),
+            const SizedBox(height: 5,),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -27,11 +28,11 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   // calender section
                   weeklyCalender(),
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
 
                   // task and view all row
                   taskAndViewAll(),
-                  const SizedBox(height: 10,),
+                  const SizedBox(height: 15,),
 
                   // task card
                   taskCard()
