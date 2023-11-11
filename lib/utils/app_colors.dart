@@ -10,6 +10,7 @@ class MyColors {
   static const Color greenBg = Color.fromRGBO(108, 155, 96, 0.09);
   static const Color borderColor = Color.fromRGBO(228, 232, 231, 1);
   static const Color customGreen = Color.fromRGBO(40, 101, 49, 1);
+  static const Color customGreenLight = Color.fromRGBO(0, 166, 106, 1);
   static const Color selectedArea = Color.fromRGBO(108, 155, 96, 0.3);
 
 
@@ -20,6 +21,7 @@ class MyColors {
   static const Color customOrange = Color.fromRGBO(255, 168, 34, 1);
   static const Color unselectedDot = Color.fromRGBO(222, 224, 230, 1);
   static const Color customBlue = Color.fromRGBO(51, 94, 184, 1);
+  static const Color customBlueLight = Color.fromRGBO(58, 98, 240, 1);
   static const Color customMagenta = Color.fromRGBO(81, 91, 212, 1);
   static const Color customPink = Color.fromRGBO(221, 42, 123, 1);
   static const Color customPinkLight = Color.fromRGBO(255, 97, 80, 0.2);

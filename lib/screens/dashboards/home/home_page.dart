@@ -17,13 +17,25 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+
+            // heading and weather card
             heading(),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 children: [
+                  // calender section
                   weeklyCalender(),
+                  const SizedBox(height: 15,),
+
+                  // task and view all row
+                  taskAndViewAll(),
+                  const SizedBox(height: 10,),
+
+                  // task card
+                  taskCard()
+
                 ],
               ),
             )
@@ -34,6 +46,10 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+
+
+
 
 
 
@@ -239,6 +255,60 @@ class _HomePageState extends State<HomePage> {
         ),
 
         Text(" $title", style: MyTextStyle.primaryLight(),),
+      ],
+    );
+  }
+
+
+  Row taskAndViewAll() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text("Tasks", style: MyTextStyle.primaryMedium(fontSize: 16),),
+        InkWell(
+          onTap: (){
+
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+            decoration: BoxDecoration(
+                color: MyColors.customGeryLight,
+                borderRadius: BorderRadius.circular(40)
+            ),
+            child: Text("View all", style: MyTextStyle.primaryLight(),),
+          ),
+        )
+      ],
+    );
+  }
+
+
+  Container taskCard() {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+          color: MyColors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: MyColors.borderColor)
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          customIconWithValue(icon: Icons.event_note_outlined, iconColor: MyColors.customBlueLight, value: "33"),
+          customIconWithValue(icon: Icons.done_all, iconColor: MyColors.customGreenLight, value: "33"),
+          customIconWithValue(icon: Icons.close, iconColor: MyColors.customRed, value: "33"),
+        ],
+      ),
+    );
+  }
+
+
+  Widget customIconWithValue({required IconData icon , required Color iconColor,required String value}){
+    return Row(
+      children: [
+        Icon(icon,color: iconColor,size: 29,),
+        const SizedBox(width: 5,),
+        Text(value, style: MyTextStyle.primaryMedium(),)
       ],
     );
   }
