@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool isSecurePass = true;
   bool isValidEmail = false;
-  bool isSpecialChar = false;
+  //bool isSpecialChar = false;
   bool isFormFilled = false;
   bool isInvalidCredentials = false;
   @override
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           isFormFullyFilled();
                         },
                         validatorFunction: (value) {
-                          if (!isSpecialChar) {
+                          if (value == null || value.isEmpty) {
                             return AppStrings.requiredField;
                           }
                           return null;
