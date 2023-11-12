@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurture_field/landing_page.dart';
 import '../../components/custom_appbar/custom_appbar_inner.dart';
 import '../../components/custom_buttons/custom_button_rounded.dart';
 import '../../components/custom_text_input_field/custom_text_input_field.dart';
@@ -113,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       bgColor: isFormFilled?MyColors.primaryColor:MyColors.secondaryTextColor,
                       onPress: (){
                         if(_formKey.currentState!.validate() && isValidEmail && passwordController.text.isNotEmpty){
-                          //Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> ConfirmEmail(email: emailController.text,)));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> LandingPage()));
 
                         }
 
