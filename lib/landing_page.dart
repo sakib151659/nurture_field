@@ -149,6 +149,7 @@ class _LandingPageState extends State<LandingPage> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarColor: selectedIndex == 0? MyColors.customGreen:MyColors.white,
+        //statusBarBrightness: Brightness.light,
       ),
       child: SafeArea(
         child: Scaffold(
