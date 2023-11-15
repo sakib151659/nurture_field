@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nurture_field/components/custom_buttons/custom_text_button.dart';
 import 'package:nurture_field/screens/auth/password_changed.dart';
+import 'package:nurture_field/utils/asset_strings.dart';
 import '../../components/custom_appbar/custom_appbar_inner.dart';
 import '../../components/custom_buttons/custom_button_rounded.dart';
 import '../../components/custom_text_input_field/custom_text_input_field.dart';
@@ -161,7 +162,10 @@ class _VerifyCodeState extends State<VerifyCode> {
           isSecurePass = !isSecurePass;
         });
       },
-      child: Icon(isSecurePass ? Icons.visibility_off : Icons.visibility, size: 18),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ImageIcon(AssetImage(isSecurePass ? AssetStrings.eyeOpenIcon:AssetStrings.eyeCloseIcon,),size: 10,),
+      ),
     );
   }
 
@@ -172,7 +176,11 @@ class _VerifyCodeState extends State<VerifyCode> {
           isSecureConfirmPass = !isSecureConfirmPass;
         });
       },
-      child: Icon(isSecureConfirmPass ? Icons.visibility_off : Icons.visibility, size: 18),
+      //child: Icon(isSecureConfirmPass ? Icons.visibility_off : Icons.visibility, size: 18),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ImageIcon(AssetImage(isSecureConfirmPass ? AssetStrings.eyeOpenIcon:AssetStrings.eyeCloseIcon,),size: 10,),
+      ),
     );
   }
 

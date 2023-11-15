@@ -8,6 +8,7 @@ import '../../components/custom_text_input_field/sign_in_text_input_field.dart';
 import '../../components/custom_widgets/common_widgets.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_strings.dart';
+import '../../utils/asset_strings.dart';
 import '../../utils/custom_text_style.dart';
 import 'forget_password.dart';
 
@@ -164,7 +165,10 @@ class _LoginScreenState extends State<LoginScreen> {
           isSecurePass = !isSecurePass;
         });
       },
-      child: Icon(isSecurePass ? Icons.visibility_off : Icons.visibility, size: 18),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ImageIcon(AssetImage(isSecurePass ? AssetStrings.eyeOpenIcon:AssetStrings.eyeCloseIcon,),size: 10,),
+      ),
     );
   }
 

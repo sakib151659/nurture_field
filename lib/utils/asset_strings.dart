@@ -31,5 +31,7 @@ class AssetStrings{
   static const String plusIcon = "assets/icons/plus_icon.png";
   static const String positionPointIcon = "assets/icons/position_point_icon.png";
   static const String positionMarkerIcon = "assets/icons/position_marker_icon.png";
+  static const String eyeOpenIcon = "assets/icons/eye_close_icon.png"; 
+  static const String eyeCloseIcon = "assets/icons/eye_open_icon.png";
 
 }
