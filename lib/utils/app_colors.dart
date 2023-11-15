@@ -21,6 +21,7 @@ class MyColors {
   static const Color transparentBackGround = Color.fromRGBO(255, 255, 255, .05);
   static const Color navigationBarColor = Color.fromRGBO(196, 196, 196, 1);
   static const Color customOrange = Color.fromRGBO(255, 168, 34, 1);
+  static const Color customOrangeNew = Color.fromRGBO(233, 162, 59, 1);
   static const Color unselectedDot = Color.fromRGBO(222, 224, 230, 1);
   static const Color customBlue = Color.fromRGBO(51, 94, 184, 1);
   static const Color customBlueLight = Color.fromRGBO(58, 98, 240, 1);

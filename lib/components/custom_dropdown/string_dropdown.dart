@@ -55,6 +55,7 @@ class _StringDropdownState extends State<StringDropdown> {
             hintMaxLines: 1,
             hintStyle: const TextStyle(color: MyColors.customGeryLight, fontSize: 14),
             //labelText: "Menu mode *",
+
             contentPadding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
             border:  OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -62,11 +63,11 @@ class _StringDropdownState extends State<StringDropdown> {
             ),
           ), //new 2
         ),
-        popupProps: PopupProps.dialog(
+        popupProps: PopupProps.menu(
 
-            dialogProps: DialogProps(),
-            showSearchBox: true,
-            showSelectedItems: true,
+            //dialogProps: DialogProps(),
+            showSearchBox: false,
+            showSelectedItems: false,
             itemBuilder: _customPopupItemBuilderExample),
         clearButtonProps: ClearButtonProps(isVisible: false, splashRadius: 20),
         items: widget.itemList,

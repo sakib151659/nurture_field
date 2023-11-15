@@ -143,7 +143,7 @@ class _CompleteCompanyProfileState extends State<CompleteCompanyProfile> {
                 const SizedBox(height: 30,),
                 CustomButtonRounded(
                     title: "Completed & Save",
-                    bgColor: isFormFilled? MyColors.primaryColor: MyColors.customGrayDark,
+                    bgColor: isFormFilled? MyColors.primaryColor: MyColors.greyColorNew,
                     onPress: (){
                       if(_formKey.currentState!.validate()){
                         LocalStorageManager.saveData(AppConstant.isCompanyProfileCompleted, true);

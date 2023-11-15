@@ -31,16 +31,16 @@ class _FiledMapViewState extends State<FiledMapView> {
                     color: MyColors.verifiedBg,
                     shape: BoxShape.circle
                   ),
-                  child: const Icon(Icons.verified_outlined, color: MyColors.primaryColor, size: 30,),
+                  child: const Icon(Icons.verified_outlined, color: MyColors.primaryColor, size: 35,),
                 ),
 
-                const SizedBox(height: 5,),
+                const SizedBox(height: 8,),
                 Text("Congratulations!",
                   style: MyTextStyle.primaryBold(fontSize: 20),
                 ),
-                const SizedBox(height: 5,),
+                const SizedBox(height: 8,),
                 Text("Now it’s time to set your field",
-                  style: MyTextStyle.secondaryLight(),
+                  style: MyTextStyle.secondaryMedium(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 25,),
                 Align(
@@ -110,7 +110,7 @@ class _FiledMapViewState extends State<FiledMapView> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         width: double.infinity,
         decoration: BoxDecoration(
           border: Border.all(color: borderColor),
@@ -120,7 +120,7 @@ class _FiledMapViewState extends State<FiledMapView> {
         child: Column(
           children: [
             ImageIcon(AssetImage(icon), size: 33,),
-            const SizedBox(height: 5,),
+            const SizedBox(height: 17,),
             Text(title,
               style: MyTextStyle.primaryBold(fontSize: 20),
             ),
@@ -139,7 +139,7 @@ class _FiledMapViewState extends State<FiledMapView> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: MyColors.customOrange,
+        color: MyColors.customOrangeNew,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Text("Coming Soon", style: MyTextStyle.secondaryLight(fontColor: MyColors.white, fontSize: 12),),
