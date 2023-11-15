@@ -14,13 +14,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
 
             // heading and weather card
             heading(),
-            const SizedBox(height: 5,),
+            const SizedBox(height: 8,),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -28,15 +29,14 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   // calender section
                   weeklyCalender(),
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 27,),
 
                   // task and view all row
                   taskAndViewAll(),
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 10,),
 
                   // task card
-                  taskCard()
-
+                  taskCard(),
                 ],
               ),
             )
@@ -76,27 +76,33 @@ class _HomePageState extends State<HomePage> {
                     end: Alignment.bottomCenter, // Ending point
                   ),
                 ),
-                child: Row(
+                child: Column(
                   children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Image.network("https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", fit: BoxFit.cover,),
+                    Row(
+                      children: [
+                        Container(
+                          height: 40,
+                          width: 40,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.network("https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500", fit: BoxFit.cover,),
+                        ),
+
+                        const SizedBox(width: 10,),
+                        Text("Sakib Khan", style: MyTextStyle.secondaryMedium(fontColor:MyColors.white, fontSize: 16, fontWeight: FontWeight.w600 ),),
+                        const Spacer(),
+
+                        const ImageIcon(AssetImage(AssetStrings.notificationUnfilledIcon), color: MyColors.white,)
+
+                      ],
                     ),
-
-                    const SizedBox(width: 10,),
-                    Text("Sakib Khan", style: MyTextStyle.secondaryMedium(fontColor:MyColors.white, fontSize: 16, fontWeight: FontWeight.w600 ),),
-                    const Spacer(),
-
-                    const ImageIcon(AssetImage(AssetStrings.notificationUnfilledIcon), color: MyColors.white,)
-
                   ],
                 )
               ),
+
+
             ],
           ),
         ),
@@ -121,17 +127,17 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(left: 30.0,right: 30, top: 10),
             child: Row(
               children: [
-                Text("26°", style: MyTextStyle.primaryBold(fontSize: 60),),
-                Text("°C", style: MyTextStyle.primaryLight(fontSize: 16),),
-                Text(" | °F", style: MyTextStyle.secondaryLight(fontSize: 16),),
+                Text("26°", style: MyTextStyle.primaryBold(fontSize: 65),),
+                Text("°C", style: MyTextStyle.primaryLight(fontSize: 14),),
+                Text(" | °F", style: MyTextStyle.secondaryLight(fontSize: 14),),
 
                 const Spacer(),
                 Column(
                   children: [
-                    ImageIcon(AssetImage(AssetStrings.rainIcon,), size: 50, color: MyColors.customPink,),
+                    ImageIcon(AssetImage(AssetStrings.rainIcon,), size: 50, color: MyColors.customRedNew,),
                     Text("Cloud rain", style: MyTextStyle.secondaryLight(fontSize: 16),),
                   ],
                 )
@@ -169,6 +175,7 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6),
       child: Row(
         children: [
+          const SizedBox(width: 10,),
           ImageIcon(AssetImage(icon)),
           Text("  $title: ", style: MyTextStyle.secondaryLight(),),
           Text(value, style: MyTextStyle.primaryMedium(fontSize: 14, fontWeight: FontWeight.w600),),
@@ -195,47 +202,18 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
 
-          const SizedBox(height: 20,),
+          const SizedBox(height: 27,),
           //ETC
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text("23", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
-              Text("34", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
-              Text("43", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
-              Text("23", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
-              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
-              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
-              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customRed),),
-            ],
-          ),
-          const SizedBox(height: 10,),
-          //ETO
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text("56", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
-              Text("35", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
-              Text("75", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
-              Text("45", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
-              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
-              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
-              Text("--", style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue),),
-            ],
-          ),
-
-          const SizedBox(height: 10,),
-          //Days
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text("F", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
-              Text("S", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
-              Text("S", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
-              Text("M", style: MyTextStyle.primaryLight(fontColor: MyColors.primaryTextColor, fontWeight: FontWeight.w600),),
-              Text("T", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
-              Text("W", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
-              Text("T", style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
+              calenderColumn(etcValue: "23", etoValue: "23", day: "F"),
+              calenderColumn(etcValue: "23", etoValue: "23", day: "S"),
+              calenderColumn(etcValue: "23", etoValue: "23", day: "S"),
+              calenderColumn(etcValue: "23", etoValue: "23", day: "M"),
+              calenderColumn(etcValue: "-", etoValue: "-", day: "T"),
+              calenderColumn(etcValue: "-", etoValue: "-", day: "W"),
+              calenderColumn(etcValue: "-", etoValue: "-", day: "T"),
             ],
           ),
         ],
@@ -286,7 +264,7 @@ class _HomePageState extends State<HomePage> {
 
   Container taskCard() {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
       decoration: BoxDecoration(
           color: MyColors.white,
           borderRadius: BorderRadius.circular(12),
@@ -297,7 +275,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           customIconWithValue(icon: Icons.event_note_outlined, iconColor: MyColors.customBlueLight, value: "33"),
           customIconWithValue(icon: Icons.done_all, iconColor: MyColors.customGreenLight, value: "33"),
-          customIconWithValue(icon: Icons.close, iconColor: MyColors.customRed, value: "33"),
+          customIconWithValue(icon: Icons.close, iconColor: MyColors.customPinkNew, value: "33"),
         ],
       ),
     );
@@ -309,8 +287,56 @@ class _HomePageState extends State<HomePage> {
       children: [
         Icon(icon,color: iconColor,size: 29,),
         const SizedBox(width: 5,),
-        Text(value, style: MyTextStyle.primaryMedium(),)
+        Text(value, style: MyTextStyle.primaryMedium(fontSize: 24),)
       ],
     );
   }
+
+  Widget calenderColumn({required String etcValue, required String etoValue, required String day}){
+    return Column(
+      children: [
+        Text(etcValue, textAlign: TextAlign.center,style: MyTextStyle.primaryLight(fontColor: MyColors.customRed, fontSize: 16),),
+        const SizedBox(height: 10,),
+        Text(etoValue, textAlign: TextAlign.center,style: MyTextStyle.primaryLight(fontColor: MyColors.customBlue, fontSize: 16),),
+        const SizedBox(height: 10,),
+        Text(day, textAlign: TextAlign.center,style: MyTextStyle.primaryLight(fontColor: MyColors.secondaryTextColor),),
+      ],
+    );
+  }
+}
+
+
+
+class RPSCustomPainter extends CustomPainter{
+
+  @override
+  void paint(Canvas canvas, Size size) {
+
+    // Layer 1
+
+    Paint paint_fill_0 = Paint()
+      ..color = const Color.fromARGB(22, 13, 12, 255)
+      ..style = PaintingStyle.fill
+      ..strokeWidth = size.width*0.00
+      ..strokeCap = StrokeCap.butt
+      ..strokeJoin = StrokeJoin.miter;
+
+
+    Path path_0 = Path();
+    path_0.moveTo(size.width*0.0670133,size.height*0.0071765);
+    path_0.cubicTo(size.width*0.1733733,size.height*0.1290735,size.width*0.1507200,size.height*0.0717059,size.width*0.2088267,size.height*0.1697059);
+    path_0.cubicTo(size.width*0.3469600,size.height*0.1876471,size.width*0.3588867,size.height*0.0490441,size.width*0.4089067,size.height*0.0088235);
+    path_0.cubicTo(size.width*0.3234333,size.height*0.0084118,size.width*0.3234333,size.height*0.0084118,size.width*0.0670133,size.height*0.0071765);
+    path_0.close();
+
+    canvas.drawPath(path_0, paint_fill_0);
+
+
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+
 }

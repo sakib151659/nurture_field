@@ -44,8 +44,8 @@ class _FieldCreateState extends State<FieldCreate> {
                 const SizedBox(height: 15,),
                 Row(
                   children: [
-                    const ImageIcon(AssetImage(AssetStrings.fileIcon)),
-                    const SizedBox(width: 15,),
+                    const ImageIcon(AssetImage(AssetStrings.fileIcon), size: 37,),
+                    const SizedBox(width: 12,),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,15 +67,10 @@ class _FieldCreateState extends State<FieldCreate> {
                         onTap: (){
 
                         },
-                        child: const ImageIcon(AssetImage(AssetStrings.editIcon), color: MyColors.customGrayDark)
+                        child: const ImageIcon(AssetImage(AssetStrings.editIcon), size: 20,color: MyColors.primaryTextColor)
                     ),
-                    const SizedBox(width: 15,),
-                    InkWell(
-                        onTap: (){
-
-                        },
-                        child: const ImageIcon(AssetImage(AssetStrings.deleteIcon), color: MyColors.customGrayDark,)
-                    ),
+                    const SizedBox(width: 10,),
+                    Text("Edit", style: MyTextStyle.primaryLight(fontSize: 18),)
                   ],
                 ),
 

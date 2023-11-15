@@ -27,6 +27,8 @@ class MyColors {
   static const Color customBlueLight = Color.fromRGBO(58, 98, 240, 1);
   static const Color customMagenta = Color.fromRGBO(81, 91, 212, 1);
   static const Color customPink = Color.fromRGBO(221, 42, 123, 1);
+  static const Color customPinkNew = Color.fromRGBO(201, 8, 66, 1);
+  static const Color customRedNew = Color.fromRGBO(255, 31, 31, 1);
   static const Color customPinkLight = Color.fromRGBO(255, 97, 80, 0.2);
   static const Color customRed = Color.fromRGBO(255, 97, 80, 1);
   static const Color customGery = Color.fromRGBO(232, 239, 221, 1);
