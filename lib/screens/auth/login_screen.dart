@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         validatorFunction: (value) {
                           if (isValidEmail==false) {
-                            return AppStrings.requiredField;
+                            //return AppStrings.requiredField;
                           }
                           return null;
                         },
@@ -75,6 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   CustomWidgets().titledColumn(
                       title: "Password",
+                      bottomSpace: 5,
                       widget: MyTextFieldSignIn(
                         isSecure: isSecurePass,
                         controller: passwordController,
@@ -86,7 +87,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         validatorFunction: (value) {
                           if (value == null || value.isEmpty) {
-                            return AppStrings.requiredField;
+                            setState(() {
+                              isInvalidCredentials = true;
+                            });
+                            //return "ⓘ Wrong password. Try again or click forgot password to reset it.";
                           }
                           return null;
                         },
@@ -96,12 +100,28 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   // if credentials is invalid then set the isInvalidCredentials = true
                   if(isInvalidCredentials)...[
-                    Text("ⓘ Wrong password. Try again or click forgot password to reset it.",
-                      style: MyTextStyle.secondaryLight(fontColor: MyColors.customRed),
+                    Column(
+                      children: [
+                        const SizedBox(height: 5,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(Icons.info_outline, color: MyColors.customRed,size: 20,),
+                            const SizedBox(width: 3,),
+                            Expanded(
+                              child: Text("Wrong password. Try again or click forgot password to reset it.",
+                                style: MyTextStyle.secondaryLight(fontColor: MyColors.customRed, fontSize: 13),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 10,),
                   ],
 
+                  const SizedBox(height: 10,),
                   CustomTextButton(
                       title: "Forgot password?",
                       onTap: (){

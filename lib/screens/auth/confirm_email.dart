@@ -63,7 +63,7 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
                     hintText: "6 digit code",
                     validatorFunction: (value) {
                       if (value == null || value.length<6) {
-                        return AppStrings.requiredField;
+                        //return AppStrings.requiredField;
                       }
                       return null;
                     },

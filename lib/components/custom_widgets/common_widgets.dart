@@ -3,7 +3,7 @@ import '../../utils/custom_text_style.dart';
 
 class CustomWidgets{
 
-  Widget titledColumn({required String title, required Widget widget}){
+  Widget titledColumn({required String title, required Widget widget, double bottomSpace = 17}){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -13,7 +13,7 @@ class CustomWidgets{
         ),
         const SizedBox(height: 3,),
         widget,
-        const SizedBox(height: 17,),
+        SizedBox(height: bottomSpace,),
       ],
     );
   }

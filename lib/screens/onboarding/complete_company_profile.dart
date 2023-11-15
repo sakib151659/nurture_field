@@ -69,7 +69,7 @@ class _CompleteCompanyProfileState extends State<CompleteCompanyProfile> {
                               },
                               validatorFunction: (value) {
                                 if (value==null || value.isEmpty) {
-                                  return AppStrings.requiredField;
+                                  //return AppStrings.requiredField;
                                 }
                                 return null;
                               },
@@ -111,7 +111,7 @@ class _CompleteCompanyProfileState extends State<CompleteCompanyProfile> {
                               },
                               validatorFunction: (value) {
                                 if (value==null || value.isEmpty) {
-                                  return AppStrings.requiredField;
+                                  //return AppStrings.requiredField;
                                 }
                                 return null;
                               },
@@ -129,7 +129,7 @@ class _CompleteCompanyProfileState extends State<CompleteCompanyProfile> {
                               },
                               validatorFunction: (value) {
                                 if (value==null || value.isEmpty) {
-                                  return AppStrings.requiredField;
+                                  //return AppStrings.requiredField;
                                 }
                                 return null;
                               },
@@ -145,7 +145,7 @@ class _CompleteCompanyProfileState extends State<CompleteCompanyProfile> {
                     title: "Completed & Save",
                     bgColor: isFormFilled? MyColors.primaryColor: MyColors.greyColorNew,
                     onPress: (){
-                      if(_formKey.currentState!.validate()){
+                      if(isFormFilled){
                         LocalStorageManager.saveData(AppConstant.isCompanyProfileCompleted, true);
                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const FiledMapView()));
                       }

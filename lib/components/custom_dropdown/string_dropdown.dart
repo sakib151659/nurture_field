@@ -38,7 +38,7 @@ class _StringDropdownState extends State<StringDropdown> {
           if (value != null) {
             return null;
           }else{
-            return AppStrings.requiredField;
+            //return AppStrings.requiredField;
           }
 
 

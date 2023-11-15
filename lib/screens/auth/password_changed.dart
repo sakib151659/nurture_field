@@ -27,7 +27,7 @@ class PasswordChanged extends StatelessWidget {
               Text("Your password has been changed successfully.",
                 style: MyTextStyle.secondaryLight(),
               ),
-              const SizedBox(height: 25,),
+              const SizedBox(height: 29,),
               CustomButtonRounded(
                   title: "Log in",
                   bgColor: MyColors.primaryColor,

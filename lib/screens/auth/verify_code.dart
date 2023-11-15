@@ -29,6 +29,7 @@ class _VerifyCodeState extends State<VerifyCode> {
   bool isSecureConfirmPass = true;
   bool isSpecialChar = false;
   bool is8Char = false;
+  bool isFormFilled = false;
   bool isInvalidCredentials = false;
   @override
   Widget build(BuildContext context) {
@@ -61,11 +62,14 @@ class _VerifyCodeState extends State<VerifyCode> {
                         controller: verificationCodeController,
                         textInputType: TextInputType.number,
                         hintText: "0 0 0 0",
+                        onChanged: (value){
+                          isFormValidate();
+                        },
                         validatorFunction: (value) {
                           if (verificationCodeController.text.isEmpty) {
-                            return AppStrings.requiredField;
+                            //return AppStrings.requiredField;
                           }else if (verificationCodeController.text.length!=4) {
-                            return AppStrings.should4digit;
+                            //return AppStrings.should4digit;
                           }
                           return null;
                         },
@@ -90,10 +94,11 @@ class _VerifyCodeState extends State<VerifyCode> {
                         suffix: _passwordVisibility(),
                         onChanged: (value){
                           passwordValidate(value: value);
+                          isFormValidate();
                         },
                         validatorFunction: (value) {
                           if (!isSpecialChar) {
-                            return AppStrings.passwordInstruction;
+                            //return AppStrings.passwordInstruction;
                           }
                           return null;
                         },
@@ -109,9 +114,12 @@ class _VerifyCodeState extends State<VerifyCode> {
                         textInputType: TextInputType.text,
                         hintText: "Confirm Password",
                         suffix: _confirmPasswordVisibility(),
+                        onChanged: (value){
+                          isFormValidate();
+                        },
                         validatorFunction: (value) {
                           if (passwordController.text!=confirmPasswordController.text) {
-                            return AppStrings.passwordNotMatching;
+                            //return AppStrings.passwordNotMatching;
                           }
                           return null;
                         },
@@ -122,9 +130,9 @@ class _VerifyCodeState extends State<VerifyCode> {
                   const SizedBox(height: 30,),
                   CustomButtonRounded(
                       title: "Confirm",
-                      bgColor: MyColors.primaryColor,
+                      bgColor: isFormFilled?MyColors.primaryColor:MyColors.greyColorNew,
                       onPress: (){
-                        if(_formKey.currentState!.validate()){
+                        if(isFormFilled){
                           Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> const PasswordChanged()));
                         }
 
@@ -185,6 +193,18 @@ class _VerifyCodeState extends State<VerifyCode> {
     if(isSpecialChar){
       setState(() {
         isSpecialChar = true;
+      });
+    }
+  }
+
+  void isFormValidate(){
+    if(verificationCodeController.text.length==4&& passwordController.text == confirmPasswordController.text){
+      setState(() {
+        isFormFilled = true;
+      });
+    }else{
+      setState(() {
+        isFormFilled = false;
       });
     }
   }

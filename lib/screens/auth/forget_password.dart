@@ -63,7 +63,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         },
                         validatorFunction: (value) {
                           if (isValidEmail==false) {
-                            return AppStrings.requiredField;
+                            //return AppStrings.requiredField;
                           }
                           return null;
                         },

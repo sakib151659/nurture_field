@@ -87,7 +87,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                       validatorFunction: (value) {
                       if (value == null || value.isEmpty) {
-                        return AppStrings.requiredField;
+                        //return AppStrings.requiredField;
                       }
                       return null;
                     },
@@ -105,7 +105,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                       validatorFunction: (value) {
                         if (value == null || value.isEmpty) {
-                          return AppStrings.requiredField;
+                          //return AppStrings.requiredField;
                         }
                         return null;
                       },
@@ -123,7 +123,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                       validatorFunction: (value) {
                         if (value == null || value.isEmpty) {
-                          return AppStrings.requiredField;
+                          //return AppStrings.requiredField;
                         }
                         return null;
                       },
@@ -141,7 +141,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                       validatorFunction: (value) {
                         if (value == null || value.isEmpty) {
-                          return AppStrings.requiredField;
+                          //return AppStrings.requiredField;
                         }
                         return null;
                       },
@@ -162,7 +162,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       },
                       validatorFunction: (value) {
                         if (!isSpecialChar) {
-                          return AppStrings.requiredField;
+                          //return AppStrings.requiredField;
                         }
                         return null;
                       },
@@ -178,9 +178,9 @@ class _CreateAccountState extends State<CreateAccount> {
                 const SizedBox(height: 35,),
                 CustomButtonRounded(
                     title: "Continue",
-                    bgColor: isFormFilled?MyColors.primaryColor:MyColors.secondaryTextColor,
+                    bgColor: isFormFilled?MyColors.primaryColor:MyColors.greyColorNew,
                     onPress: (){
-                      if(_formKey.currentState!.validate()){
+                      if(isFormFilled){
                         Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> ConfirmEmail(email: emailController.text,)));
 
                       }
