@@ -170,12 +170,12 @@ class _CreateAccountState extends State<CreateAccount> {
                     )
                 ),
 
-                const SizedBox(height: 10,),
+               // const SizedBox(height: 10,),
                 customPassInstruction(isValid: is8Char, title: "Avoid using the same password for multiple sites."),
                 customPassInstruction(isValid: is8Char, title: "Password must be 8 character long."),
                 customPassInstruction(isValid: isSpecialChar, title: "Besides letters,  include at least a number or symbol (!@#%^&*())"),
 
-                const SizedBox(height: 20,),
+                const SizedBox(height: 35,),
                 CustomButtonRounded(
                     title: "Continue",
                     bgColor: isFormFilled?MyColors.primaryColor:MyColors.secondaryTextColor,
@@ -225,7 +225,7 @@ class _CreateAccountState extends State<CreateAccount> {
             const SizedBox(width: 5,),
             Expanded(
               child: Text(title,
-                style: MyTextStyle.secondaryLight(),
+                style: MyTextStyle.secondaryLight(fontSize: 12),
               ),
             ),
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurture_field/components/custom_buttons/custom_text_button.dart';
 import 'package:nurture_field/screens/onboarding/onboarding.dart';
 import 'package:nurture_field/utils/app_colors.dart';
 import '../../components/custom_appbar/custom_appbar_inner.dart';
@@ -33,22 +34,23 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
           child: Column(
             children: [
               Image.asset("assets/icons/mail_icon.png", height: 130,),
-              const SizedBox(height: 10,),
+              const SizedBox(height: 15,),
               Text("Check your email",
-                style: MyTextStyle.primaryBold(),
+                style: MyTextStyle.primaryBold(fontSize: 20),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(height: 15,),
               RichText(
                 text: TextSpan(
                   text: 'To activate your account, please enter the 6 digit code we sent to ',
-                  style: MyTextStyle.secondaryLight(fontSize: 16),
+                  style: MyTextStyle.secondaryLight(fontSize: 14),
                   children: <TextSpan>[
                     TextSpan(
                       text: widget.email,
-                      style: MyTextStyle.primaryMedium(fontSize: 16, fontWeight: FontWeight.w600),
+                      style: MyTextStyle.primaryMedium(fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
+                textAlign: TextAlign.center,
               ),
 
 
@@ -68,12 +70,10 @@ class _ConfirmEmailState extends State<ConfirmEmail> {
                   )
               ),
 
-              TextButton(
-                  onPressed: (){
 
-                  },
-                  child: Text("Resend email", style: MyTextStyle.primaryBold(fontColor: MyColors.primaryColor, fontSize: 15),)
-              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                  child: CustomTextButton(title: "Resend email", onTap: (){})),
 
 
               const Spacer(),
