@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         validatorFunction: (value) {
                           if (isValidEmail==false) {
-                            //return AppStrings.requiredField;
+                            return AppStrings.requiredField;
                           }
                           return null;
                         },
@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         validatorFunction: (value) {
                           if (value == null || value.isEmpty) {
-                            //return AppStrings.requiredField;
+                            return AppStrings.requiredField;
                           }
                           return null;
                         },
@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                   ),
 
-                  const SizedBox(height: 30,),
+                  const SizedBox(height: 35,),
                   CustomButtonRounded(
                       title: "Log in",
                       bgColor: isFormFilled?MyColors.primaryColor:MyColors.greyColorNew,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurture_field/components/custom_buttons/custom_text_button.dart';
 import 'package:nurture_field/screens/auth/password_changed.dart';
 import '../../components/custom_appbar/custom_appbar_inner.dart';
 import '../../components/custom_buttons/custom_button_rounded.dart';
@@ -71,13 +72,14 @@ class _VerifyCodeState extends State<VerifyCode> {
                       )
                   ),
 
-                  TextButton(
-                      onPressed: (){
-                       // hit the resend code api
-                      },
-                      child: Text("Resend code", style: MyTextStyle.primaryBold(fontColor: MyColors.primaryColor, fontSize: 15),)
+                  CustomTextButton(
+                      title: "Resend code",
+                      onTap: (){
+
+                      }
                   ),
-                  const SizedBox(height: 10,),
+
+                  const SizedBox(height: 20,),
                   CustomWidgets().titledColumn(
                       title: "Password",
                       widget: MyTextFieldSignIn(
@@ -119,7 +121,7 @@ class _VerifyCodeState extends State<VerifyCode> {
 
                   const SizedBox(height: 30,),
                   CustomButtonRounded(
-                      title: "Continue",
+                      title: "Confirm",
                       bgColor: MyColors.primaryColor,
                       onPress: (){
                         if(_formKey.currentState!.validate()){

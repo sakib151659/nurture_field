@@ -75,7 +75,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   const SizedBox(height: 30,),
                   CustomButtonRounded(
                       title: "Send verification code",
-                      bgColor: isValidEmail?MyColors.primaryColor:MyColors.secondaryTextColor,
+                      bgColor: isValidEmail?MyColors.primaryColor:MyColors.greyColorNew,
                       onPress: (){
                         if(_formKey.currentState!.validate() && isValidEmail){
                           Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> VerifyCode(email: emailController.text,)));
