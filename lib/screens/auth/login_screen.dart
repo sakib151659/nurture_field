@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurture_field/components/custom_buttons/custom_text_button.dart';
 import 'package:nurture_field/landing_page.dart';
 import '../../components/custom_appbar/custom_appbar_inner.dart';
 import '../../components/custom_buttons/custom_button_rounded.dart';
@@ -47,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: MyTextStyle.primaryBold(fontSize: 24),
                   ),
                   const SizedBox(height: 5,),
-                  Text("Welcome to  back nurture field!",
+                  Text("Welcome back to nurture field!",
                     style: MyTextStyle.secondaryLight(),
                   ),
                   const SizedBox(height: 15,),
@@ -65,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         validatorFunction: (value) {
                           if (isValidEmail==false) {
-                            return AppStrings.requiredField;
+                            //return AppStrings.requiredField;
                           }
                           return null;
                         },
@@ -85,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         validatorFunction: (value) {
                           if (value == null || value.isEmpty) {
-                            return AppStrings.requiredField;
+                            //return AppStrings.requiredField;
                           }
                           return null;
                         },
@@ -101,17 +102,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 10,),
                   ],
 
-                  TextButton(
-                      onPressed: (){
+                  CustomTextButton(
+                      title: "Forgot password?",
+                      onTap: (){
                         Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const ForgetPassword()));
-                      },
-                      child: Text("Forgot password?", style: MyTextStyle.primaryBold(fontColor: MyColors.primaryColor, fontSize: 15),)
+                      }
                   ),
 
                   const SizedBox(height: 30,),
                   CustomButtonRounded(
-                      title: "Continue",
-                      bgColor: isFormFilled?MyColors.primaryColor:MyColors.secondaryTextColor,
+                      title: "Log in",
+                      bgColor: isFormFilled?MyColors.primaryColor:MyColors.greyColorNew,
                       onPress: (){
                         if(_formKey.currentState!.validate() && isValidEmail && passwordController.text.isNotEmpty){
                           Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> LandingPage()));
