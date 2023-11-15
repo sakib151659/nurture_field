@@ -10,7 +10,7 @@ class CustomAppbarInner extends StatefulWidget implements PreferredSizeWidget{
   final Color bgColor;
   final Color fontColor;
   final Widget actionWidget;
-  const CustomAppbarInner({Key? key, this.leadingIcon=Icons.arrow_back_ios,this.title = "", this.bgColor = MyColors.backgroundColor , this.fontColor=MyColors.primaryTextColor, this.actionWidget=const SizedBox(width: 30,)}) : super(key: key);
+  const CustomAppbarInner({Key? key, this.leadingIcon=Icons.arrow_back_ios_new_rounded,this.title = "", this.bgColor = MyColors.backgroundColor , this.fontColor=MyColors.primaryTextColor, this.actionWidget=const SizedBox(width: 30,)}) : super(key: key);
 
   @override
   _CustomAppbarInnerState createState() => _CustomAppbarInnerState();
@@ -30,7 +30,7 @@ class _CustomAppbarInnerState extends State<CustomAppbarInner> {
       leading: IconButton(onPressed: (){
         Navigator.of(context).pop();
       }, icon: Icon(widget.leadingIcon, color: MyColors.primaryTextColor,)),
-      title: Text(widget.title, style: MyTextStyle.primaryLight(fontColor: widget.fontColor, fontSize: 16,),),
+      title: Text(widget.title, style: MyTextStyle.primaryMedium(fontColor: widget.fontColor, fontSize: 16,),),
       centerTitle: true,
       actions: [
         widget.actionWidget
