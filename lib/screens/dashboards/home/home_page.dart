@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 30.0,right: 30, top: 10),
+            padding: const EdgeInsets.only(left: 31.0,right: 31, top: 12),
             child: Row(
               children: [
                 Text("26°", style: MyTextStyle.primaryBold(fontSize: 65),),
@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
-          const Divider(),
+          const Divider(thickness: 1,),
 
           customWeatherTitle(icon: AssetStrings.thermometerIcon, title: "Pressure", value: "1010mbar"),
           customWeatherTitle(icon: AssetStrings.humidityIcon, title: "Humidity", value: "82%"),
@@ -273,9 +273,9 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          customIconWithValue(icon: Icons.event_note_outlined, iconColor: MyColors.customBlueLight, value: "33"),
-          customIconWithValue(icon: Icons.done_all, iconColor: MyColors.customGreenLight, value: "33"),
-          customIconWithValue(icon: Icons.close, iconColor: MyColors.customPinkNew, value: "33"),
+          customIconWithValue(icon: Icons.event_note_outlined, iconColor: MyColors.customBlueLight, value: "25"),
+          customIconWithValue(icon: Icons.done_all, iconColor: MyColors.customGreenLight, value: "20"),
+          customIconWithValue(icon: Icons.close, iconColor: MyColors.customPinkNew, value: "12"),
         ],
       ),
     );

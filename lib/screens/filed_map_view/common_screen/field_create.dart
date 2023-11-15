@@ -89,7 +89,7 @@ class _FieldCreateState extends State<FieldCreate> {
                       },
                       validatorFunction: (value) {
                         if (value==null || value.isEmpty) {
-                          return AppStrings.requiredField;
+                          //return AppStrings.requiredField;
                         }
                         return null;
                       },
@@ -107,7 +107,7 @@ class _FieldCreateState extends State<FieldCreate> {
                       },
                       validatorFunction: (value) {
                         if (value==null || value.isEmpty) {
-                          return AppStrings.requiredField;
+                          //return AppStrings.requiredField;
                         }
                         return null;
                       },

@@ -38,7 +38,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //heading
-                  const SizedBox(height: 25,),
+                  const SizedBox(height: 28,),
                   Text("Forgot your password?",
                     style: MyTextStyle.primaryBold(fontSize: 24),
                   ),

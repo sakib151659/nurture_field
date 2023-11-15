@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nurture_field/components/custom_appbar/custom_appbar_inner.dart';
 import 'package:nurture_field/components/custom_dropdown/string_dropdown.dart';
 import 'package:nurture_field/components/custom_text_input_field/custom_text_input_field.dart';
 import 'package:nurture_field/components/custom_widgets/common_widgets.dart';
@@ -31,129 +32,128 @@ class _CompleteCompanyProfileState extends State<CompleteCompanyProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //heading
-                        const SizedBox(height: 15,),
-                        Text("Complete Company Profile",
-                          textAlign: TextAlign.center,
-                          style: MyTextStyle.primaryBold(fontSize: 24),
-                        ),
-                        const SizedBox(height: 5,),
-                        Text(
-                          "Input some details about your company here.",
-                          textAlign: TextAlign.center,
-                          style: MyTextStyle.secondaryLight(),
-                        ),
-                        const SizedBox(height: 10,),
+      appBar: const CustomAppbarInner(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //heading
+                      const SizedBox(height: 10,),
+                      Text("Complete Company Profile",
+                        textAlign: TextAlign.center,
+                        style: MyTextStyle.primaryBold(fontSize: 24),
+                      ),
+                      const SizedBox(height: 5,),
+                      Text(
+                        "Input some details about your company here.",
+                        textAlign: TextAlign.center,
+                        style: MyTextStyle.secondaryLight(),
+                      ),
+                      const SizedBox(height: 10,),
 
-                        //form
-                        CustomWidgets().titledColumn(
-                            title: "Company Name",
-                            widget: CustomTextInputField(
-                                controller: companyNameController,
-                                textInputType: TextInputType.text,
-                                hintText: "Company Name",
-                              onChanged: (value){
+                      //form
+                      CustomWidgets().titledColumn(
+                          title: "Company Name",
+                          widget: CustomTextInputField(
+                              controller: companyNameController,
+                              textInputType: TextInputType.text,
+                              hintText: "Company Name",
+                            onChanged: (value){
+                              isFormFullyFilled();
+                            },
+                            validatorFunction: (value) {
+                              if (value==null || value.isEmpty) {
+                                //return AppStrings.requiredField;
+                              }
+                              return null;
+                            },
+                          )
+                      ),
+
+                      CustomWidgets().titledColumn(
+                          title: "Employee",
+                          widget: StringDropdown(
+                              hintText: "Select Employee",
+                              itemList: StaticList().dummyList,
+                              callBackFunction: (value){
+                                selectedEmployee = value;
                                 isFormFullyFilled();
-                              },
-                              validatorFunction: (value) {
-                                if (value==null || value.isEmpty) {
-                                  //return AppStrings.requiredField;
-                                }
-                                return null;
-                              },
-                            )
-                        ),
+                              }
+                          )
+                      ),
 
-                        CustomWidgets().titledColumn(
-                            title: "Employee",
-                            widget: StringDropdown(
-                                hintText: "Select Employee",
-                                itemList: StaticList().dummyList,
-                                callBackFunction: (value){
-                                  selectedEmployee = value;
-                                  isFormFullyFilled();
-                                }
-                            )
-                        ),
-
-                        CustomWidgets().titledColumn(
-                            title: "Country name",
-                            widget: StringDropdown(
-                                hintText: "Select Country name",
-                                itemList: StaticList().dummyList,
-                                callBackFunction: (value){
-                                  selectedCountry = value;
-                                  isFormFullyFilled();
-                                }
-                            )
-                        ),
-
-                        CustomWidgets().titledColumn(
-                            title: "Province",
-                            widget: CustomTextInputField(
-                                controller: provinceController,
-                                textInputType: TextInputType.text,
-                                hintText: "Province",
-                              onChanged: (value){
+                      CustomWidgets().titledColumn(
+                          title: "Country name",
+                          widget: StringDropdown(
+                              hintText: "Select Country name",
+                              itemList: StaticList().dummyList,
+                              callBackFunction: (value){
+                                selectedCountry = value;
                                 isFormFullyFilled();
-                              },
-                              validatorFunction: (value) {
-                                if (value==null || value.isEmpty) {
-                                  //return AppStrings.requiredField;
-                                }
-                                return null;
-                              },
-                            )
-                        ),
+                              }
+                          )
+                      ),
 
-                        CustomWidgets().titledColumn(
-                            title: "Town",
-                            widget: CustomTextInputField(
-                                controller: townController,
-                                textInputType: TextInputType.text,
-                                hintText: "Town",
-                              onChanged: (value){
-                                isFormFullyFilled();
-                              },
-                              validatorFunction: (value) {
-                                if (value==null || value.isEmpty) {
-                                  //return AppStrings.requiredField;
-                                }
-                                return null;
-                              },
-                            )
-                        ),
+                      CustomWidgets().titledColumn(
+                          title: "Province",
+                          widget: CustomTextInputField(
+                              controller: provinceController,
+                              textInputType: TextInputType.text,
+                              hintText: "Province",
+                            onChanged: (value){
+                              isFormFullyFilled();
+                            },
+                            validatorFunction: (value) {
+                              if (value==null || value.isEmpty) {
+                                //return AppStrings.requiredField;
+                              }
+                              return null;
+                            },
+                          )
+                      ),
 
-                      ],
-                    ),
+                      CustomWidgets().titledColumn(
+                          title: "Town",
+                          widget: CustomTextInputField(
+                              controller: townController,
+                              textInputType: TextInputType.text,
+                              hintText: "Town",
+                            onChanged: (value){
+                              isFormFullyFilled();
+                            },
+                            validatorFunction: (value) {
+                              if (value==null || value.isEmpty) {
+                                //return AppStrings.requiredField;
+                              }
+                              return null;
+                            },
+                          )
+                      ),
+
+                    ],
                   ),
                 ),
-                const SizedBox(height: 30,),
-                CustomButtonRounded(
-                    title: "Completed & Save",
-                    bgColor: isFormFilled? MyColors.primaryColor: MyColors.greyColorNew,
-                    onPress: (){
-                      if(isFormFilled){
-                        LocalStorageManager.saveData(AppConstant.isCompanyProfileCompleted, true);
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const FiledMapView()));
-                      }
+              ),
+              const SizedBox(height: 30,),
+              CustomButtonRounded(
+                  title: "Completed & Save",
+                  bgColor: isFormFilled? MyColors.primaryColor: MyColors.greyColorNew,
+                  onPress: (){
+                    if(isFormFilled){
+                      LocalStorageManager.saveData(AppConstant.isCompanyProfileCompleted, true);
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder)=>const FiledMapView()));
                     }
-                ),
-                const SizedBox(height: 30,)
-              ],
-            ),
+                  }
+              ),
+              const SizedBox(height: 30,)
+            ],
           ),
         ),
       ),

@@ -198,7 +198,7 @@ class _VerifyCodeState extends State<VerifyCode> {
   }
 
   void isFormValidate(){
-    if(verificationCodeController.text.length==4&& passwordController.text == confirmPasswordController.text){
+    if(verificationCodeController.text.length== 4 && passwordController.text.isNotEmpty &&  passwordController.text == confirmPasswordController.text){
       setState(() {
         isFormFilled = true;
       });

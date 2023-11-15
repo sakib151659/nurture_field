@@ -55,7 +55,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       onPressed: (){
                         controller.jumpToPage(2);
                       },
-                      child: Text("Skip", style: MyTextStyle.primaryBold(fontSize: 16),)
+                      child: Text("Skip", style: MyTextStyle.primaryLight(fontSize: 16),)
                   ),
                 ],
               ),
