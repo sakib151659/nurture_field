@@ -18,40 +18,40 @@ class _FiledMapViewState extends State<FiledMapView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              children: [
-                const SizedBox(height: 30,),
-                Container(
-                  height: 66,
-                  width: 66,
-                  decoration: const BoxDecoration(
-                    color: MyColors.verifiedBg,
-                    shape: BoxShape.circle
-                  ),
-                  child: const Icon(Icons.verified_outlined, color: MyColors.primaryColor, size: 35,),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 30,),
+              Container(
+                height: 66,
+                width: 66,
+                decoration: const BoxDecoration(
+                  color: MyColors.verifiedBg,
+                  shape: BoxShape.circle
                 ),
+                child: const Icon(Icons.verified_outlined, color: MyColors.primaryColor, size: 35,),
+              ),
 
-                const SizedBox(height: 8,),
-                Text("Congratulations!",
-                  style: MyTextStyle.primaryBold(fontSize: 20),
+              const SizedBox(height: 8,),
+              Text("Congratulations!",
+                style: MyTextStyle.primaryBold(fontSize: 20),
+              ),
+              const SizedBox(height: 8,),
+              Text("Now it’s time to set your field",
+                style: MyTextStyle.secondaryMedium(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 25,),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Select the field adding option",
+                  style: MyTextStyle.primaryBold(fontSize: 16),
                 ),
-                const SizedBox(height: 8,),
-                Text("Now it’s time to set your field",
-                  style: MyTextStyle.secondaryMedium(fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 25,),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Select the field adding option",
-                    style: MyTextStyle.primaryBold(fontSize: 16),
-                  ),
-                ),
-                const SizedBox(height: 10,),
+              ),
+              const SizedBox(height: 10,),
 
-                customOption(
+              Expanded(
+                child: customOption(
                   bgColor: MyColors.greenBg,
                     borderColor: MyColors.primaryColor,
                     icon: AssetStrings.filedIcon,
@@ -62,8 +62,10 @@ class _FiledMapViewState extends State<FiledMapView> {
 
                     }
                 ),
-                const SizedBox(height: 15,),
-                customOption(
+              ),
+              const SizedBox(height: 15,),
+              Expanded(
+                child: customOption(
                     icon: AssetStrings.locationIcon,
                     title: "Set Coordinates manually",
                     subTitle: "fill your land coordinates on input",
@@ -71,9 +73,11 @@ class _FiledMapViewState extends State<FiledMapView> {
                       Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>const SetCoordinatesManually()));
                     }
                 ),
+              ),
 
-                const SizedBox(height: 15,),
-                Stack(
+              const SizedBox(height: 15,),
+              Expanded(
+                child: Stack(
                   children: [
                     customOption(
                         icon: AssetStrings.uploadIcon,
@@ -87,8 +91,10 @@ class _FiledMapViewState extends State<FiledMapView> {
                         child: comingSoon())
                   ],
                 ),
-              ],
-            ),
+              ),
+
+              SizedBox(height: 20,)
+            ],
           ),
         ),
       ),
@@ -110,7 +116,7 @@ class _FiledMapViewState extends State<FiledMapView> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         width: double.infinity,
         decoration: BoxDecoration(
           border: Border.all(color: borderColor),
@@ -118,6 +124,8 @@ class _FiledMapViewState extends State<FiledMapView> {
           color: bgColor
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ImageIcon(AssetImage(icon), size: 33,),
             const SizedBox(height: 17,),
